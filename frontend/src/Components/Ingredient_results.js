@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Goal from "./Components/Goal_Meter";
+import Goal from "./Goal_Meter.js";
 
 
 

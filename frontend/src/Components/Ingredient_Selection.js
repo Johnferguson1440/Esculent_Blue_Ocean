@@ -49,7 +49,7 @@ export default class Ingredient_Selection extends Component {
         <div id={"ingredients"}>
         <div id={"plan"}>
         <h1>{this.state.name} DAILY NUTRITION PLAN</h1>
-        <DatePicker selected={startDate} onChange={this.dateSelected()} />
+        {/* <DatePicker selected={startDate} onChange={this.dateSelected()} /> */}
 
         </div>
         <div id={"breakfast"}>

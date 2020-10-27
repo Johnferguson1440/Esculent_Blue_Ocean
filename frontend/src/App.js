@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fetch from 'node-fetch';
+
 import Login from "./Components/Login";
 import Ingredient_Selection from "./Components/Ingredient_Selection";
 

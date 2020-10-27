@@ -17,12 +17,14 @@ export default class Goal extends Component {
       };
       this.api = `http://localhost:8000/api/example`;
     }
-    //Creates our rounded corners 
-    let r = rounded ? Math.ceil(height / 2) : 0;
-    //Calculates the width of our colored rectangle (giving the meter effect):
-    let w = percent ? Math.max(height, width * Math.min(percent, 1)): 0;
-    //Animates the meter 
-    let style = animate ? { "transition": "width 500ms, fill 250ms" } : null;
+
+    //need to make these states or methods
+    // //Creates our rounded corners 
+    // let r = rounded ? Math.ceil(height / 2) : 0;
+    // //Calculates the width of our colored rectangle (giving the meter effect):
+    // let w = percent ? Math.max(height, width * Math.min(percent, 1)): 0;
+    // //Animates the meter 
+    // let style = animate ? { "transition": "width 500ms, fill 250ms" } : null;
 
     
     
@@ -41,11 +43,11 @@ export default class Goal extends Component {
       return (
         <div id="goal">
         
-       
-          <svg width={this.width} height={this.height} aria-label={this.label}>
+       {/*need to update everything to match what you made the lets uabove*/}
+          {/* <svg width={this.width} height={this.height} aria-label={this.label}>
             <rect width={this.width} height={this.height} fill="#ccc" rx={r} ry={r}/>
             <rect width={w} height={this.height} fill={this.color} rx={r} ry={r}   style={style}/>
-          </svg>
+          </svg> */}
 
         </div>
       );

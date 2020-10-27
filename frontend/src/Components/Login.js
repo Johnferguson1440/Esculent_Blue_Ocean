@@ -11,7 +11,7 @@ export default class Login extends Component {
       super(props);
       this.state = {
         username: '',
-        password: ''
+        password: '',
 
       };
       // this.api = `http://localhost:8000/api/example`;
