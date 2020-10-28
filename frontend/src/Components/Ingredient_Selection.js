@@ -15,6 +15,9 @@ export default class Ingredient_Selection extends Component {
         date: null,
         //decideds what is conditionally rendered between ingredient selection, ingredient results, or user selected recipes
         ingredientRender: null,
+        //start date for date picker
+        startDate: new Date(),
+
 
         
       };
@@ -22,6 +25,12 @@ export default class Ingredient_Selection extends Component {
     }
 
     //method linked to event listener to update state.name from the username input box
+
+    //method to handle date change
+    dateChange(date){
+      this.setState({startDate: date})
+    }
+    
 
     dateSelected(){
       //when date is selected need to set state to current date
@@ -49,7 +58,7 @@ export default class Ingredient_Selection extends Component {
         <div id={"ingredients"}>
         <div id={"plan"}>
         <h1>{this.state.name} DAILY NUTRITION PLAN</h1>
-        {/* <DatePicker selected={startDate} onChange={this.dateSelected()} /> */}
+        <DatePicker selected={this.state.startDate} onChange={this.dateChange} name="startDate" dateFormat="MM/dd/yyyy" />
 
         </div>
         <div id={"breakfast"}>
