@@ -8,8 +8,7 @@ export default class Login extends Component {
       super(props);
       this.state = {
         username: '',
-        password: '',
-
+        password: ''
       };
       // this.api = `http://localhost:8000/api/example`;
     }
@@ -20,26 +19,31 @@ export default class Login extends Component {
          
     //     });
     // }
-     valueChange(e) {
-      console.log(e.target.value)
-    }
+    //  valueChange(e) {
+    //   console.log(e.target.value)
+    // }
   
 
     render() {
       return (
           <div id={"login"}>
+
             <div className="header">Login</div>
+main
             <div className="content">
-            <label for='username'>Username</label>
+            <label htmlFor='username'>Username</label>
             <input type='text' name='username' placeholder='userame'/>
-            <label for='password'>Password</label>
+            <label htmlFor='password'>Password</label>
             <input  type='password' name='password' placeholder='password'/>
             </div>
             <div className='btn'>
               <button type='button' className='btn'>
-                login
+                Login
               </button>
-            </div>
+              <button type='button' className='bttn'>
+                Create Account
+              </button>
+             </div>
             </div>
       )
     }

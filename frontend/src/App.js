@@ -37,9 +37,11 @@ export default class App extends Component {
     return (
       <div id={"main"}>
         
+
         {/* <Login/>
         <Ingredient_Selection/> */}
         <Goal_Meter />
+ main
       </div>
     );
   }
