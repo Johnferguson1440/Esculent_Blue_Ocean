@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { Component} from 'react';
+
+
 import Goal from "./Goal_Meter.js";
 
 
@@ -45,7 +45,7 @@ export default class Ingredient_results extends Component {
 
       return (
         <div id={"results"}>
-       
+       <Goal/>
         {/* your code here */}
           
          

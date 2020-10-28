@@ -1,5 +1,7 @@
+
 import React, { Component, Fragment } from 'react';
 import {ProgressBar} from 'react-bootstrap';
+
 
 
 export default class Goal extends Component {

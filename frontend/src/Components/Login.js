@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {MuiThemeProvider} from '@material-ui/core';
-import {AppBar} from '@material-ui/core';
-import {RaisedButton} from '@material-ui/core';
-import {TextField} from '@material-ui/core';
+
 
 
 
@@ -31,14 +28,14 @@ export default class Login extends Component {
     render() {
       return (
           <div id={"login"}>
-            <div className="header">Login</div >
+            <div className="header">Login</div>
             <div className="content">
             <label for='username'>Username</label>
             <input type='text' name='username' placeholder='userame'/>
             <label for='password'>Password</label>
             <input  type='password' name='password' placeholder='password'/>
             </div>
-            <div classname='btn'>
+            <div className='btn'>
               <button type='button' className='btn'>
                 login
               </button>
