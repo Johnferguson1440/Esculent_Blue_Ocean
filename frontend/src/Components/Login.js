@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import {MuiThemeProvider} from '@material-ui/core';
+import {AppBar} from '@material-ui/core';
+import {RaisedButton} from '@material-ui/core';
+import {TextField} from '@material-ui/core';
 
 
 
