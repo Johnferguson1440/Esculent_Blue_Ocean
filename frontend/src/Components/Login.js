@@ -27,15 +27,16 @@ export default class Login extends Component {
     render() {
       return (
           <div id={"login"}>
-            <div className='title'><big><h1>Esculent</h1></big></div>
-            <div className="header"><h2>Login</h2></div >
+
+            <div className="header">Login</div>
+main
             <div className="content">
             <label htmlFor='username'>Username</label>
             <input type='text' name='username' placeholder='userame'/>
             <label htmlFor='password'>Password</label>
             <input  type='password' name='password' placeholder='password'/>
             </div>
-            <div classname='btn'>
+            <div className='btn'>
               <button type='button' className='btn'>
                 Login
               </button>

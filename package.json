@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
@@ -31,6 +32,7 @@
     "http-proxy-middleware": "^1.0.5",
     "morgan": "^1.10.0",
     "pg": "^8.3.3",
+    "react-bootstrap": "^1.4.0",
     "react-datepicker": "^3.3.0"
   }
 }
