@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
+import "./Components/app.css";
 import Login from "./Components/Login";
 import Ingredient_Selection from "./Components/Ingredient_Selection";
-
+import Goal_Meter from "./Components/Goal_Meter";
 
 
 
@@ -37,9 +37,9 @@ export default class App extends Component {
     return (
       <div id={"main"}>
         
-        <Login/>
-        <Ingredient_Selection/>
-
+        {/* <Login/>
+        <Ingredient_Selection/> */}
+        <Goal_Meter />
       </div>
     );
   }
