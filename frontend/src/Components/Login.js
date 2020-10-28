@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {MuiThemeProvider} from '@material-ui/core';
-import {AppBar} from '@material-ui/core';
-import {RaisedButton} from '@material-ui/core';
-import {TextField} from '@material-ui/core';
+
 
 
 
@@ -11,8 +8,7 @@ export default class Login extends Component {
       super(props);
       this.state = {
         username: '',
-        password: '',
-
+        password: ''
       };
       // this.api = `http://localhost:8000/api/example`;
     }
@@ -23,26 +19,30 @@ export default class Login extends Component {
          
     //     });
     // }
-     valueChange(e) {
-      console.log(e.target.value)
-    }
+    //  valueChange(e) {
+    //   console.log(e.target.value)
+    // }
   
 
     render() {
       return (
           <div id={"login"}>
-            <div className="header">Login</div >
+            <div className='title'><big><h1>Esculent</h1></big></div>
+            <div className="header"><h2>Login</h2></div >
             <div className="content">
-            <label for='username'>Username</label>
+            <label htmlFor='username'>Username</label>
             <input type='text' name='username' placeholder='userame'/>
-            <label for='password'>Password</label>
+            <label htmlFor='password'>Password</label>
             <input  type='password' name='password' placeholder='password'/>
             </div>
             <div classname='btn'>
               <button type='button' className='btn'>
-                login
+                Login
               </button>
-            </div>
+              <button type='button' className='bttn'>
+                Create Account
+              </button>
+             </div>
             </div>
       )
     }

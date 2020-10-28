@@ -39,7 +39,6 @@ export default class App extends Component {
         
         <Login/>
         <Ingredient_Selection/>
-
       </div>
     );
   }
