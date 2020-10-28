@@ -1,0 +1,6 @@
+{
+    "env": {
+        "MONGO_ATLAS_PW": "756837God",
+        "MONGO_ATLAS_DB": "Esculent"
+    }
+}
