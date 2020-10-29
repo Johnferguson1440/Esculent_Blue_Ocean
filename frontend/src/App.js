@@ -16,10 +16,26 @@ export default class App extends Component {
     super(props);
     this.state = {
       //can be either selection/results/dayplan for render
-      ingredient: null,
+      
+      username: '',
+      password: ''
       
     };
     // this.api = `http://localhost:8000/api/example`;
+  }
+
+  changeUser(e){
+
+    this.setState({username: e.target.value})
+
+    
+  }
+  changePass(e){
+    this.setState({password: e.target.value})
+  }
+  blankUser(){
+    this.setState({username: ""});
+    this.setState({password: ""});
   }
 
   componentDidMount() {
@@ -39,8 +55,8 @@ export default class App extends Component {
       <div id={"main"}>
         
 
-        <Login/>
-        <IngredientSelection/> 
+        <Login user={this.state.username} userChange={this.changeUser.bind(this)} pass={this.state.password}  userPass={this.changePass.bind(this)} />
+        <IngredientSelection user={this.state.username} pass={this.state.password} blank={this.blankUser.bind(this)} /> 
         
 
       </div>
