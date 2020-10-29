@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import "./Components/app.css";
 import Login from "./Components/Login";
-import Ingredient_Selection from "./Components/Ingredient_Selection";
-import Goal_Meter from "./Components/Goal_Meter";
+import IngredientSelection from "./Components/IngredientSelection";
+import "./App.css"
+
 
 
 
@@ -38,10 +39,10 @@ export default class App extends Component {
       <div id={"main"}>
         
 
-        {/* <Login/>
-        <Ingredient_Selection/> */}
-        <Goal_Meter />
- main
+        <Login/>
+        <IngredientSelection/> 
+        
+
       </div>
     );
   }

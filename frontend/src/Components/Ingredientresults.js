@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
 
 
-import Goal from "./Goal_Meter.js";
+import Goal from "./GoalMeter.js";
 
 
 
-export default class Ingredient_results extends Component {
+export default class Ingredientresults extends Component {
     constructor(props) {
       super(props);
       this.state = {
