@@ -186,7 +186,7 @@ export default class PickIngredients extends Component {
 
         </div> 
         </div>
-       
+       <button id={"searchrecipe"} type={"submit"}>SEARCH RECIPES</button>
           
          
           

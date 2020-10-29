@@ -110,7 +110,12 @@ export default class IngredientSelection extends Component {
     render() {
 
       //conditional based off state value to render nothing, ingredient selector divs or ingredient results
-      
+      let currentShow;
+      if(this.state.ingredientRender==="pick"){
+        currentShow= <PickIngredients/>
+      }else if(this.state.ingredientRender==="result"){
+        currentShow=<Ingredientresults/>
+      }
       
 
 

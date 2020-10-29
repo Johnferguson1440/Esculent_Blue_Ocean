@@ -38,9 +38,9 @@ export default class Login extends Component {
             <h2>LOGIN</h2>
 
             <div className="content">
-            <label htmlFor='username'>Username</label>
+            <label htmlFor='username'>Username:</label>
             <input type='text' name='username' placeholder='username'  value={this.props.user} onChange={this.props.userChange}/>
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password'>Password  :</label>
             <input  type='password' name='password' placeholder='password' value={this.props.pass} onChange={this.props.userPass} />
             </div>
             <div className='btn'>
