@@ -1,5 +1,5 @@
 
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import {ProgressBar} from 'react-bootstrap';
 
 
@@ -10,7 +10,7 @@ export default class Goal extends Component {
       this.state = {
         
       };
-      this.api = `http://localhost:8000/api/example`;
+      // this.api = `http://localhost:8000/api/example`;
     }
 
 
@@ -20,11 +20,11 @@ export default class Goal extends Component {
 
     
     componentDidMount() {
-      fetch(this.api)
-        .then(res => res.json())
-        .then(seaCreatures => {
+      // fetch(this.api)
+      //   .then(res => res.json())
+      //   .then(seaCreatures => {
          
-        });
+      //   });
     }
 
     

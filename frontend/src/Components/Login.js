@@ -26,10 +26,13 @@ export default class Login extends Component {
 
     render() {
       return (
-          <div id={"login"}>
+        <div id={"login"}>
+        <div id={"title"}>
+        <h1>ESCULENT</h1>
+        </div>
+            <div id={"logincont"}>
+            <h2>LOGIN</h2>
 
-            <div className="header">Login</div>
-main
             <div className="content">
             <label htmlFor='username'>Username</label>
             <input type='text' name='username' placeholder='userame'/>
@@ -43,6 +46,7 @@ main
               <button type='button' className='bttn'>
                 Create Account
               </button>
+              </div>
              </div>
             </div>
       )
