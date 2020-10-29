@@ -58,7 +58,7 @@ export default class IngredientSelection extends Component {
         let currentUser= self.props.user;
         let currentPass= self.props.pass;
           // '/existinguser/:user/:pass'
-        fetch("/"+currentUser+'/'+currentPass)
+        fetch("/api/login"+currentUser+'/'+currentPass)
         .then((res)=>{
           return res.json();})
           .then((data)=>{
