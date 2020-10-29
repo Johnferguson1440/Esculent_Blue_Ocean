@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useReducer } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Ingredientresults from "./Ingredientresults";
@@ -16,6 +16,7 @@ export default class IngredientSelection extends Component {
       this.state = {
         //name from login component
         name: null,
+        pass: null,
         //date selected from calender 
         selectedDate: null,
         //decideds what is conditionally rendered between ingredient selection, ingredient results, or user selected recipes
@@ -48,13 +49,62 @@ export default class IngredientSelection extends Component {
 
     
     componentDidMount() {
+      const login= document.getElementById('loginbtn');
+      const create= document.getElementById('create');
+      const self= this;
+      
       //*2event listner login coponent
+      login.addEventListener('click', function(event){
+        let currentUser= self.props.user;
+        let currentPass= self.props.pass;
+          // '/existinguser/:user/:pass'
+        fetch("/"+currentUser+'/'+currentPass)
+        .then((res)=>{
+          return res.json();})
+          .then((data)=>{
+            if(data=== "Successfully logged in"){
+                alert(data);
+                self.setState({name: self.props.user});
+                self.setState({pass: self.props.pass}); 
+                self.props.blank();
+            }else{
+              alert(data);
+              self.props.blank();
+            }
+          })       
+      })
+      //event listener for create new user
+      create.addEventListener('click', function (event){
+        let currentUser= self.props.user;
+        let currentPass= self.props.pass;
 
-      // fetch(this.api)
-      //   .then(res => res.json())
-      //   .then(seaCreatures => {
-         
-      //   });
+        //create a post request to store username and password
+        const options={
+          method:'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({currentUser,currentPass})
+        };
+        // '/newuser
+        fetch('/', options)
+        .then((res)=>{ return res.json()})
+        .then((data)=>{ 
+
+          if(data==="User already exist"){
+            alert(data);
+            self.props.blank();
+          }else{
+          self.setState({name: currentUser});
+          self.setState({pass: currentPass});
+            alert(data);
+          
+          self.props.blank();
+          }}) 
+        
+      })
+
+
+
+      
     }
   
     render() {

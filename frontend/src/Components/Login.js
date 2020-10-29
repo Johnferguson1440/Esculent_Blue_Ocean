@@ -7,11 +7,15 @@ export default class Login extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        username: '',
-        password: ''
+       
       };
       // this.api = `http://localhost:8000/api/example`;
     }
+
+
+    
+      
+
     // componentDidMount() {
     //   fetch(this.api)
     //     .then(res => res.json())
@@ -35,15 +39,15 @@ export default class Login extends Component {
 
             <div className="content">
             <label htmlFor='username'>Username</label>
-            <input type='text' name='username' placeholder='userame'/>
+            <input type='text' name='username' placeholder='username'  value={this.props.user} onChange={this.props.userChange}/>
             <label htmlFor='password'>Password</label>
-            <input  type='password' name='password' placeholder='password'/>
+            <input  type='password' name='password' placeholder='password' value={this.props.pass} onChange={this.props.userPass} />
             </div>
             <div className='btn'>
-              <button type='button' className='btn'>
+              <button type='button' name="login" id="loginbtn" className='btn'>
                 Login
               </button>
-              <button type='button' className='bttn'>
+              <button type='button' name="create" id="create" className='bttn'>
                 Create Account
               </button>
               </div>
