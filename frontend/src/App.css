@@ -2,6 +2,7 @@ body {
     background-color: tan;
     font-family: Viner Hand ITC;
     color: #BCED91;
+    
 }
 
 #title{
@@ -11,18 +12,42 @@ body {
 
 }
 #logincont{
+    font-size: x-large;
+    float: left;
+    flex-direction: column;
     height: 200px;
     width: 300px;
+    padding-right: 450px;
     align-content: center;
+   
 }
 
-
+#ingredients{
+    float: left;
+    text-align: center;
+    width: 1000px;
+    overflow: hidden;
+}
 
 #pickingredients{
+    font-size: larger;
    flex-direction: column;
+   align-content: center;
+   overflow: hidden;
+   
     
 }
 
 .mealpick{
     flex-direction: column;
+}
+
+
+#loginbtn{
+    background-color: #BCED91;
+
+}
+
+#create{
+    background-color: #BCED91;
 }
