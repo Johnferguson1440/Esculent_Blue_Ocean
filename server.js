@@ -1,20 +1,79 @@
 const express = require("express");
-// const mongoose = require('mongoose');
-const apiRoute = require('./routes/api')
-// const bodyParser = require('body-parser')
-const app = express();
-app.use('/api', apiRoute)
-app.use(express.static("public"));
+const mongoose = require('mongoose');
+const routes = require('./routes/api/routes')
+const app = express()
 
+const mongodbURI = 'mongodb+srv://Benjamin:12345@cluster0.px8cq.mongodb.net/Esculent?retryWrites=true&w=majority'
+const bodyParser = require('body-parser');
+const { default: Axios } = require("axios");
 // const Meal = require("./db/mongo");
 // const path = require("path");
+mongoose
+.connect(mongodbURI || 'mongodb://localhost/esculent', { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true });
 
-// mongoose.connect(`mongodb+srv://Benjamin:756837God@cluster0.px8cq.mongodb.net/Esculent?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose is connected!!!!!!!1!!!')
+});
+
+// Schema
+const Schema = mongoose.Schema;
+const EsculiciousSchema = new Schema({
+      name: String,
+      password: String
+}); 
+
+// model 
+const esculicious = mongoose.model('Esculicious', EsculiciousSchema);
+
+// const data = {
+//   name: 'boJangles',
+//   password: '43455443'
+// };
+
+// const newEsculicious = new esculicious(data);
+  
+// newEsculicious.save((error) => {
+//   if (error) {
+//     console.log('oh nooo')
+//   } else {
+//     console.log('data has been saved')
+//   }
+// });
+
+app.get('/esculicious', (req,res) => {
+  const data = {
+    username: 'accimeesterlin',
+    age: 5
+  };
+  esculicious.find({  })
+  .then((data) => {
+    console.log('Data: ', data)
+  })
+  .catch((error) => {
+    console.log('no data');
+  });
+  res.json(data);
+})
+
+// Axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=192dd61de4aa4699b4375bf69076d168&number=3includeIngredients=chicken&instructionsRequired=true&addRecipeInformation=true&minProtein=15')
+// .then((response) => {
+//   onSuccess(response)
+// })
+// .catch((error) => {
+//   console.log(error);
+// })
+
+app.listen(3001, () => {
+  console.log(`server is running and listening on port 3001`);
+})
+
 
 
 //parse express body might replace with body parser
-// app.use(express.urlencoded({extended:true}));
-// app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}));
+app.use(bodyParser.json());
 //used when utilizing the build file
 //app.use(express.static(path.join(__dirname, "./frontend/dist")));
 //used when using public folder html file
@@ -24,6 +83,3 @@ app.use(express.static("public"));
 
 
   
-  app.listen(3001, () => {
-    console.log(`server is running and listening on port 3001`);
-  });
