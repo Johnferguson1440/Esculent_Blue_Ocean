@@ -36,6 +36,14 @@ export default class Ingredientresults extends Component {
 
     componentDidMount() {
       //event listener connected to the find recipe button on the ingredient selector component. will make api call and set results to the breakfast/lunch/dinner states above
+        // we need to make three separate fetch request one for breakfast lunch and dinner.
+
+        // we need to see what are our response back from API.
+
+        // 
+
+
+
       
     }
   
