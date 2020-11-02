@@ -1,7 +1,6 @@
 import React, { Component, useReducer } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Ingredientresults from "./Ingredientresults";
 import PickIngredients from "./PickIngredients"
 import "../App.css"
 
@@ -20,7 +19,6 @@ export default class IngredientSelection extends Component {
         //date selected from calender 
         selectedDate: null,
         //decideds what is conditionally rendered between ingredient selection, ingredient results, or user selected recipes
-        ingredientRender: null,
         //start date for date picker
         startDate: new Date(),
        
@@ -110,13 +108,6 @@ export default class IngredientSelection extends Component {
     render() {
 
       //conditional based off state value to render nothing, ingredient selector divs or ingredient results
-      let currentShow;
-      if(this.state.ingredientRender==="pick"){
-        currentShow= <PickIngredients/>
-      }else if(this.state.ingredientRender==="result"){
-        currentShow=<Ingredientresults/>
-      }
-      
 
 
       return (
@@ -132,7 +123,6 @@ export default class IngredientSelection extends Component {
         </div>        
         </div>  
         <PickIngredients/>
-        <Ingredientresults/>
         
      
        

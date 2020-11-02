@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Checkbox from "./checkbox.js"
 import {intoleranceItems, nutrientItems} from "./option"
+import Ingredientresults from "./Ingredientresults";
 
 
 
@@ -19,11 +20,21 @@ export default class PickIngredients extends Component {
         textb:"",
         textl:"",
         textd:"",
-       
-              
+      //  allergy
+        allergyb:new Map(),
+        allergyl:new Map(),
+        allergyd:new Map(),
+      
+        ingredientRender: "pick",
+        breakfast: null,
+        lunch: null,
+        dinner: null
+
       };
       
-     
+      this.toggleAllergyb= this.toggleAllergyb.bind(this);
+      this.toggleAllergyl= this.toggleAllergyl.bind(this);
+      this.toggleAllergyd= this.toggleAllergyd.bind(this);
       this.toggleCheckboxChangeb= this.toggleCheckboxChangeb.bind(this);
       this.toggleCheckboxChangel= this.toggleCheckboxChangel.bind(this);
       this.toggleCheckboxChanged= this.toggleCheckboxChanged.bind(this);
@@ -38,7 +49,7 @@ export default class PickIngredients extends Component {
         const item = e.target.name;
         const isChecked = e.target.checked;
         this.setState(prevState => ({ checkedItemsb: prevState.checkedItemsb.set(item, isChecked) }));
-      console.log(this.state.checkedItemsb);
+      // console.log(this.state.checkedItemsb);
     }
     ////adds the clicked item to the state checked boxes and adds true or false for checked or not lunch
     toggleCheckboxChangel(e){
@@ -46,7 +57,7 @@ export default class PickIngredients extends Component {
       const item = e.target.name;
       const isChecked = e.target.checked;
       this.setState(prevState => ({ checkedItemsl: prevState.checkedItemsl.set(item, isChecked) }));
-    console.log(this.state.checkedItemsl);
+    // console.log(this.state.checkedItemsl);
   }
   ////adds the clicked item to the state checked boxes and adds true or false for checked or not dinner
   toggleCheckboxChanged(e){
@@ -54,7 +65,31 @@ export default class PickIngredients extends Component {
     const item = e.target.name;
     const isChecked = e.target.checked;
     this.setState(prevState => ({ checkedItemsd: prevState.checkedItemsd.set(item, isChecked) }));
-  console.log(this.state.checkedItemsd);
+  // console.log(this.state.checkedItemsd);
+}
+
+toggleAllergyb(e){
+      
+  const item = e.target.name;
+  const isChecked = e.target.checked;
+  this.setState(prevState => ({ allergyb: prevState.allergyb.set(item, isChecked) }));
+// console.log(this.state.allergyb);
+}
+
+toggleAllergyl(e){
+      
+  const item = e.target.name;
+  const isChecked = e.target.checked;
+  this.setState(prevState => ({ allergyl: prevState.allergyl.set(item, isChecked) }));
+// console.log(this.state.allergyl);
+}
+
+toggleAllergyd(e){
+      
+  const item = e.target.name;
+  const isChecked = e.target.checked;
+  this.setState(prevState => ({ allergyd: prevState.allergyd.set(item, isChecked) }));
+// console.log(this.state.allergyd);
 }
 
     //onchange for text area for each meal
@@ -78,8 +113,96 @@ export default class PickIngredients extends Component {
 
     componentDidMount() {
       //*2event listner login coponent
+      const search = document.getElementById('searchrecipe');
+      const allb = document.getElementById('allergyb').checked = true;
+      const self = this;
+      search.addEventListener('click', function(event){
+        // allergy for breakfast
+        let bal = [];
+        function allb(value, key, map) {
+          if(value===true) {
+            bal.push(key);
+          } 
+        } 
+        self.state.allergyb.forEach(allb);
+        let breakfastAllergy = '';
+        for (var a = 0; a < bal.length; a++) {
+          breakfastAllergy = breakfastAllergy + bal[a] + ',';
+        }
+        // nutrient for breakfast
+        const bnut = [];
+        function nutb(value, key, map){
+          if(value===true) {
+            bnut.push(key);
+          }
+        }
+        self.state.checkedItemsb.forEach(nutb);
+        let breakfastNutrient = '';
+        for (var n = 0; n < bnut.length; n++) {
+          breakfastNutrient = breakfastNutrient + 'min' + bnut[n] + '=10&';
+        }
+        var bApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textb}&${breakfastNutrient}intolerances=${breakfastAllergy.slice(0,-1)}`
+        console.log(bApi);
+        // allergy for lunch
+          let lal = [];
+          function alll(value, key, map) {
+            if(value===true) {
+              lal.push(key);
+            }
+          }
+          self.state.allergyl.forEach(alll);
+          let lunchAllergy = '';
+          for (var a =0; a<lal.length; a++) {
+            lunchAllergy = lunchAllergy + lal[a] + ',';
+          }
+        // nutrient for lunch
+            const lnut = [];
+            function nutl(value, key, map) {
+              if(value===true) {
+                lnut.push(key);
+              }
+            }
+            self.state.checkedItemsl.forEach(nutl);
+              let lunchNutrient = '';
+              for (var n = 0; n < lnut.length; n++) {
+                lunchNutrient = lunchNutrient + 'min' + lnut[n] + '=10&';
+              }
+          var lApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textl}&${lunchNutrient}intolerances=${lunchAllergy.slice(0,-1)}`
+        // allergy for dinner
+            const dal = [];
+            function alld(value, key, map) {
+              if(value===true) {
+                dal.push(key);
+              }
+      }
+      self.state.allergyd.forEach(alld);
+      let dinnerAllergy = '';
+      for (var a =0; a< dal.length; a++) {
+        dinnerAllergy = dinnerAllergy + dal[a] + ',';
+      }
+        // nutrient for dinner
+        const dnut = [];
+        function nutd(value, key, map) {
+          if(value===true) {
+            dnut.push(key);
+          }
+        }
+        self.state.checkedItemsd.forEach(nutd);
+        let dinnerNutrient = '';
+        for (var n=0; n<dnut.length; n++) {
+          dinnerNutrient = dinnerNutrient + 'min' + dnut[n] + '=10&';
+        }
+        var dApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textd}&${dinnerNutrient}intolerances=${dinnerAllergy.slice(0,-1)}`
+        // we need to make three separate fetch request one for breakfast lunch and dinner.
 
-      // fetch(this.api)
+        // we need to see what are our response back from API.
+
+        // 
+
+
+
+      })
+      //  fetch(this.api)
       //   .then(res => res.json())
       //   .then(seaCreatures => {
          
@@ -89,12 +212,9 @@ export default class PickIngredients extends Component {
     render() {
 
       //conditional based off state value to render nothing, ingredient selector divs or ingredient results
-      
-      
-
-
-      return (
-        <div id={"pickingredients"}>
+      let currentShow;
+      if(this.state.ingredientRender==="pick"){
+        currentShow= <div id={"pickingredients"}>
        
 
         <div id={"breakfast"} className={"mealpick"}>
@@ -105,7 +225,7 @@ export default class PickIngredients extends Component {
         {intoleranceItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.checkedItemsb.get(item.name)} onChange={this.toggleCheckboxChangeb}/>
+            <Checkbox id={'allergyb'} name={item.name} checked={this.state.allergyb.get(item.name)} onChange={this.toggleAllergyb}/>
           </label>
         ))}
         </div>
@@ -134,7 +254,7 @@ export default class PickIngredients extends Component {
         {intoleranceItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.checkedItemsl.get(item.name)} onChange={this.toggleCheckboxChangel}/>
+            <Checkbox name={item.name} checked={this.state.allergyl.get(item.name)} onChange={this.toggleAllergyl}/>
           </label>
         ))}
         </div>
@@ -164,7 +284,7 @@ export default class PickIngredients extends Component {
         {intoleranceItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.checkedItemsd.get(item.name)} onChange={this.toggleCheckboxChanged}/>
+            <Checkbox name={item.name} checked={this.state.allergyd.get(item.name)} onChange={this.toggleAllergyd}/>
           </label>
         ))}
         </div>
@@ -186,10 +306,22 @@ export default class PickIngredients extends Component {
 
         </div> 
         </div>
-       <button id={"searchrecipe"} type={"submit"}>SEARCH RECIPES</button>
+       <button type="button" name="searchrecipe" id="searchrecipe" >SEARCH RECIPES</button>
           
          
           
+        </div>
+      }else if(this.state.ingredientRender==="result"){
+        currentShow=<Ingredientresults />
+      }
+      
+
+
+      return (
+        <div id={"ingredientrender"}>
+          {currentShow}
+
+       
         </div>
       );
     }
