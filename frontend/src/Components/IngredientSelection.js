@@ -40,6 +40,7 @@ export default class IngredientSelection extends Component {
       this.setState({selectedDate: date.toLocaleDateString()});
       this.setState({startDate: date}, ()=>{console.log(this.state.selectedDate)});
       //make api call to db to see if user has info for that date yet
+      fetch("/api/")
       //conditional to change state for conditional render if infoexist/info doesnt exist      
 
     }
