@@ -30,10 +30,22 @@ export default class PickIngredients extends Component {
         //decideds what is conditionally rendered between ingredient selection, ingredient results, or user selected recipes
         //start date for date picker
         startDate: new Date(),
-        breakfast: null,
-        lunch: null,
-        dinner: null,
-        ingredientRender: "null",
+         breakfast: null,
+        //   b1:{title:'data[0].title',summary:'data[0].summary', image:'data[0].image', source:'data[0].spoonacularSourceUrl'},
+        //   b2:{title:'data[1].title',summary:'data[1].summary', image:'data[1].image', source:'data[1].spoonacularSourceUrl'},
+        //   b3:{title:'data[2].title',summary:'data[2].summary', image:'data[2].image', source:'data[2].spoonacularSourceUrl'}
+        // },
+        lunch:  null,
+        //   l1:{title:'data[0].title',summary:'data[0].summary', image:'data[0].image', source:'data[0].spoonacularSourceUrl'},
+        //   l2:{title:'data[1].title',summary:'data[1].summary', image:'data[1].image', source:'data[1].spoonacularSourceUrl'},
+        //   l3:{title:'data[2].title',summary:'data[2].summary', image:'data[2].image', source:'data[2].spoonacularSourceUrl'}
+        // },
+        dinner:  null,
+        //   d1:{title:'data[0].title',summary:'data[0].summary', image:'data[0].image', source:'data[0].spoonacularSourceUrl'},
+        //   d2:{title:'data[1].title',summary:'data[1].summary', image:'data[1].image', source:'data[1].spoonacularSourceUrl'},
+        //   d3:{title:'data[2].title',summary:'data[2].summary', image:'data[2].image', source:'data[2].spoonacularSourceUrl'}
+        // },
+        ingredientRender: "",
         results: "",
        
 
@@ -241,22 +253,52 @@ toggleAllergyd(e){
         }
         var dApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textd}&${dinnerNutrient}intolerances=${dinnerAllergy.slice(0,-1)}`
         // we need to make three separate fetch request one for breakfast lunch and dinner.
-        /*need to grab the info needed from response and save in an object 
-        this.setState({breakfast: breakfast={b1:{title:results[0].title,summary: results[0].summary, image:results[0].image, source:results[0].spoonacularSourceUrl},
-          b2:{title:results[1].title,summary: results[1].summary, image:results[1].image, source:results[1].spoonacularSourceUrl},
-          b3:{title:results[2].title,summary: results[2].summary, image:results[2].image, source:results[2].spoonacularSourceUrl}
-        }})'*/
+        // get request breakfast
+      
+        fetch('/')
+        .then((res)=>{
+          return res.json()
+        }).then((data)=>{
+          self.setState({breakfast: {
+            b1:{title:data[0].title,summary:data[0].summary, image:data[0].image, source:data[0].spoonacularSourceUrl},
+            b2:{title:data[1].title,summary:data[1].summary, image:data[1].image, source:data[1].spoonacularSourceUrl},
+            b3:{title:data[2].title,summary:data[2].summary, image:data[2].image, source:data[2].spoonacularSourceUrl}
+          }});
+        })
+        // get request lunch
+        
+        fetch('/')
+        .then((res)=> {
+          return res.json()
+        }).then((data)=>{
+          
+          self.setState({lunch:  {
+            l1:{title:data[0].title,summary:data[0].summary, image:data[0].image, source:data[0].spoonacularSourceUrl},
+            l2:{title:data[1].title,summary:data[1].summary, image:data[1].image, source:data[1].spoonacularSourceUrl},
+            l3:{title:data[2].title,summary:data[2].summary, image:data[2].image, source:data[2].spoonacularSourceUrl}
+          }});
+        })
+        // get request dinner
+        fetch('/')
+        .then((res)=> {
+          return res.json()
+        }).then((data)=> {
+          
+          self.setState({dinner: {
+            d1:{title:data[0].title,summary:data[0].summary, image:data[0].image, source:data[0].spoonacularSourceUrl},
+            d2:{title:data[1].title,summary:data[1].summary, image:data[1].image, source:data[1].spoonacularSourceUrl},
+            d3:{title:data[2].title,summary:data[2].summary, image:data[2].image, source:data[2].spoonacularSourceUrl}
+          }});
+          self.setState({ingredientRender: 'result'});
+          self.setState({results: 'many'});
+        })
+        //need to grab the info needed from response and save in an object 
+      
 
         // we need to see what are our response back from API.
 
         // need to setstate of ingredient render to result and results to many
-        self.setState({ingredientRender:"result"});
-        self.setState({results: "many"})
-
-
-
       })
-     
     }
   
     render() {
