@@ -268,12 +268,28 @@ toggleAllergyd(e){
           return res.json()
         }).then((data)=>{
           //conditional to create how many based on array.length
-          console.log(data);
-          self.setState({breakfast: {
-            b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
-            b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
-            b3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
-          }});
+          console.log(data.results.length);
+          if(data.results.length === 3) {
+            self.setState({breakfast: {
+              b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+              b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+              b3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
+            }},()=>{
+              console.log(self.state.breakfast.b4);
+            });
+
+          } else if(data.results.length === 2) {
+            self.setState({breakfast: {
+              b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+              b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+            }});
+          } else if(data.results.length === 1) {
+            self.setState({breakfast: {
+              b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+            }});
+          } else {
+            alert('No Recipes Found');
+          }
 
         })
         // get request lunch
@@ -282,29 +298,63 @@ toggleAllergyd(e){
         .then((res)=> {
           return res.json()
         }).then((data)=>{
-          
-          self.setState({lunch:  {
-            l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
-            l2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
-            l3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
-          }});
+          if(data.results.length === 3){
+            self.setState({lunch:  {
+              l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+              l2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+              l3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
+            }});
+          } else if(data.results.length === 2){
+            self.setState({lunch:  {
+              l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+              l2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+            }});
+          } else if(data.results.length === 1){
+            self.setState({lunch:  {
+              l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+            }});
+          } else {
+            alert('No Recipes Found')
+          }
         })
         // get request dinner
         fetch(`${dApi}`)
         .then((res)=> {
           return res.json()
         }).then((data)=> {
-          
-          self.setState({dinner: {
-            d1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
-            d2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
-            d3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
-          }},()=>{
-            self.setState({ingredientRender: 'result'});
-            self.setState({results: 'many'});
-            console.log(self.state.breakfast);
-
-          });
+          if(data.results.length ===3){
+            self.setState({dinner: {
+              d1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+              d2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+              d3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
+            }},()=>{
+              self.setState({ingredientRender: 'result'});
+              self.setState({results: 'many'});
+              console.log(self.state.breakfast);
+  
+            });
+          } else if(data.results.length === 2){
+            self.setState({dinner: {
+              d1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+              d2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+            }},()=>{
+              self.setState({ingredientRender: 'result'});
+              self.setState({results: 'many'});
+              console.log(self.state.breakfast);
+  
+            });
+          } else if(data.results.length === 1){
+            self.setState({dinner: {
+              d1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+            }},()=>{
+              self.setState({ingredientRender: 'result'});
+              self.setState({results: 'many'});
+              console.log(self.state.breakfast);
+  
+            });
+          } else {
+            alert('No Recipes Found');
+          }
         })
         //need to grab the info needed from response and save in an object 
       
