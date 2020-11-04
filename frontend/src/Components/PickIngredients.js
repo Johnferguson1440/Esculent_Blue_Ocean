@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Checkbox from "./checkbox.js"
 import {intoleranceItems, nutrientItems} from "./option"
 import Ingredientresults from "./Ingredientresults";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
@@ -25,23 +26,67 @@ export default class PickIngredients extends Component {
         allergyl:new Map(),
         allergyd:new Map(),
       
-        ingredientRender: "pick",
+        selectedDate: null,
+        //decideds what is conditionally rendered between ingredient selection, ingredient results, or user selected recipes
+        //start date for date picker
+        startDate: new Date(),
         breakfast: null,
         lunch: null,
-        dinner: null
+        dinner: null,
+        ingredientRender: "null",
+        results: "",
+       
 
       };
-      
+      this.dateChange= this.dateChange.bind(this);
       this.toggleAllergyb= this.toggleAllergyb.bind(this);
       this.toggleAllergyl= this.toggleAllergyl.bind(this);
       this.toggleAllergyd= this.toggleAllergyd.bind(this);
       this.toggleCheckboxChangeb= this.toggleCheckboxChangeb.bind(this);
       this.toggleCheckboxChangel= this.toggleCheckboxChangel.bind(this);
       this.toggleCheckboxChanged= this.toggleCheckboxChanged.bind(this);
-      // this.api = `http://localhost:8000/api/example`;
+      this.oneResult=this.oneResult.bind(this);
+      
+      
     }
 
-        
+    //method to update the breakfast lunch and dinner state with passed in params
+    oneResult(x,y,z){
+      this.setState({breakfast: x});
+      this.setState({lunch:y});
+      this.setState({dinner: z});
+      this.setState({results:"one"})
+    }
+
+    dateChange(date){      
+      console.log(date.toLocaleDateString());
+     
+      //when date is selected need to set state to current date
+      this.setState({selectedDate: date.toLocaleDateString()});
+      this.setState({startDate: date}, ()=>{
+        //make api call to db to see if user has info for that date yet
+        fetch("/api/date"+this.state.selectedDate+this.props.name)
+        .then((res)=>{ return res.json();})
+        .then((data)=>{ 
+          //conditional to change state for conditional render if infoexist/info doesnt exist      
+          // if user doesnt have info for that date
+          if(data=== "No Recipe"){
+            this.setState({ingredientRender: "pick"});
+
+          }else{
+          //setstate to be passed down if user exist
+          this.setState({breakfast:data.breakfast});
+          this.setState({lunch: data.lunch});
+          this.setState({dinner:data.dinner})
+          //call method from ingredient results to change states if user already has recipes for that date
+          this.setState({results: "one"});
+          this.setState({ingredientRender: "result"})
+          }
+        })
+      });
+      
+
+    }  
 
     //adds the clicked item to the state checked boxes and adds true or false for checked or not breakfast
     toggleCheckboxChangeb(e){
@@ -112,9 +157,11 @@ toggleAllergyd(e){
    
 
     componentDidMount() {
+    }
+    myfunction=()=>{
       //*2event listner login coponent
       const search = document.getElementById('searchrecipe');
-      const allb = document.getElementById('allergyb').checked = true;
+      
       const self = this;
       search.addEventListener('click', function(event){
         // allergy for breakfast
@@ -142,7 +189,7 @@ toggleAllergyd(e){
           breakfastNutrient = breakfastNutrient + 'min' + bnut[n] + '=10&';
         }
         var bApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textb}&${breakfastNutrient}intolerances=${breakfastAllergy.slice(0,-1)}`
-        console.log(bApi);
+        
         // allergy for lunch
           let lal = [];
           function alll(value, key, map) {
@@ -194,52 +241,56 @@ toggleAllergyd(e){
         }
         var dApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textd}&${dinnerNutrient}intolerances=${dinnerAllergy.slice(0,-1)}`
         // we need to make three separate fetch request one for breakfast lunch and dinner.
+        /*need to grab the info needed from response and save in an object 
+        this.setState({breakfast: breakfast={b1:{title:results[0].title,summary: results[0].summary, image:results[0].image, source:results[0].spoonacularSourceUrl},
+          b2:{title:results[1].title,summary: results[1].summary, image:results[1].image, source:results[1].spoonacularSourceUrl},
+          b3:{title:results[2].title,summary: results[2].summary, image:results[2].image, source:results[2].spoonacularSourceUrl}
+        }})'*/
 
         // we need to see what are our response back from API.
 
-        // 
+        // need to setstate of ingredient render to result and results to many
+        self.setState({ingredientRender:"result"});
+        self.setState({results: "many"})
 
 
 
       })
-      //  fetch(this.api)
-      //   .then(res => res.json())
-      //   .then(seaCreatures => {
-         
-      //   });
+     
     }
   
     render() {
 
+     
+
       //conditional based off state value to render nothing, ingredient selector divs or ingredient results
       let currentShow;
       if(this.state.ingredientRender==="pick"){
-        currentShow= <div id={"pickingredients"}>
-       
+        currentShow= <div id={"pickingredients"}>    
 
         <div id={"breakfast"} className={"mealpick"}>
         <h1>BREAKFAST</h1>
         <div id={"selections"}>
         <div id={"intolerance"}>
-        <h4>Intolerance</h4>
+        <h3>Intolerance</h3>
         {intoleranceItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox id={'allergyb'} name={item.name} checked={this.state.allergyb.get(item.name)} onChange={this.toggleAllergyb}/>
+            <Checkbox id={'box'} name={item.name} checked={this.state.allergyb.get(item.name)} onChange={this.toggleAllergyb}/>
           </label>
         ))}
         </div>
         <div id={"nutrients"}>
-        <h4>Nutrients</h4>
+        <h3>Nutrients</h3>
         {nutrientItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.checkedItemsb.get(item.name)} onChange={this.toggleCheckboxChangeb}/>
+            <Checkbox id={'box'} name={item.name} checked={this.state.checkedItemsb.get(item.name)} onChange={this.toggleCheckboxChangeb}/>
           </label>
         ))}
         </div>
         <div id={"addIng"}>
-        <h4>Add Ingredients</h4>
+        <h3>Add Ingredients</h3>
           <textarea id={"ingText"} cols="30" rows="10" value={this.state.textb} onChange={this.Btext.bind(this)}></textarea>
           
         </div>
@@ -250,25 +301,25 @@ toggleAllergyd(e){
         <h1>LUNCH</h1>
         <div id={"selections"}>
         <div id={"intolerance"}>
-        <h4>Intolerance</h4>
+        <h3>Intolerance</h3>
         {intoleranceItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.allergyl.get(item.name)} onChange={this.toggleAllergyl}/>
+            <Checkbox id={'box'} name={item.name} checked={this.state.allergyl.get(item.name)} onChange={this.toggleAllergyl}/>
           </label>
         ))}
         </div>
         <div id={"nutrients"}>
-        <h4>Nutrients</h4>
+        <h3>Nutrients</h3>
         {nutrientItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.checkedItemsl.get(item.name)} onChange={this.toggleCheckboxChangel}/>
+            <Checkbox id={'box'} name={item.name} checked={this.state.checkedItemsl.get(item.name)} onChange={this.toggleCheckboxChangel}/>
           </label>
         ))}
         </div>
         <div id={"addIng"}>
-        <h4>Add Ingredients</h4>
+        <h3>Add Ingredients</h3>
        
         <textarea id={"ingText"} cols="30" rows="10" value={this.state.textl} onChange={this.Ltext.bind(this)}></textarea>
 
@@ -280,25 +331,25 @@ toggleAllergyd(e){
         <h1>DINNER</h1>
         <div id={"selections"}>
         <div id={"intolerance"}>
-        <h4>Intolerance</h4>
+        <h3>Intolerance</h3>
         {intoleranceItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.allergyd.get(item.name)} onChange={this.toggleAllergyd}/>
+            <Checkbox id={'box'} name={item.name} checked={this.state.allergyd.get(item.name)} onChange={this.toggleAllergyd}/>
           </label>
         ))}
         </div>
         <div id={"nutrients"}>
-        <h4>Nutrients</h4>   
+        <h3>Nutrients</h3>   
         {nutrientItems.map(item=>(
           <label key={item.key}>
             {item.name}
-            <Checkbox name={item.name} checked={this.state.checkedItemsd.get(item.name)} onChange={this.toggleCheckboxChanged}/>
+            <Checkbox id={'box'} name={item.name} checked={this.state.checkedItemsd.get(item.name)} onChange={this.toggleCheckboxChanged}/>
           </label>
         ))}
         </div>
         <div id={"addIng"}>
-        <h4>Add Ingredients</h4>
+        <h3>Add Ingredients</h3>
         
         <textarea id={"ingText"} cols="30" rows="10" value={this.state.textd} onChange={this.Dtext.bind(this)}></textarea>
 
@@ -312,17 +363,25 @@ toggleAllergyd(e){
           
         </div>
       }else if(this.state.ingredientRender==="result"){
-        currentShow=<Ingredientresults />
+        currentShow=<Ingredientresults date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
       }
       
 
 
       return (
-        <div id={"ingredientrender"}>
-          {currentShow}
+<Fragment>
+<div className={"datepicker"}>
+        
+        <DatePicker dateFormat="MM/dd/yyyy" selected={this.state.startDate} 
+        onChange={this.dateChange} 
+        name="startDate"   />
+        </div>        
 
-       
+        <div id={"ingredientrender"}>
+          {currentShow}       
         </div>
+
+        </Fragment>
       );
     }
   }
