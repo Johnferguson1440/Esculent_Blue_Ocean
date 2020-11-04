@@ -58,6 +58,7 @@ export default class PickIngredients extends Component {
       this.toggleCheckboxChangel= this.toggleCheckboxChangel.bind(this);
       this.toggleCheckboxChanged= this.toggleCheckboxChanged.bind(this);
       this.oneResult=this.oneResult.bind(this);
+      this.myfunction=this.myfunction.bind(this);
       
       
     }
@@ -75,9 +76,16 @@ export default class PickIngredients extends Component {
      
       //when date is selected need to set state to current date
       this.setState({selectedDate: date.toLocaleDateString()});
+      var date =this.state.selectedDate;
+      var name=this.props.name
+      const options={
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({date,name})
+      };
       this.setState({startDate: date}, ()=>{
         //make api call to db to see if user has info for that date yet
-        fetch("/api/date"+this.state.selectedDate+this.props.name)
+        fetch("/api/date", options)
         .then((res)=>{ return res.json();})
         .then((data)=>{ 
           //conditional to change state for conditional render if infoexist/info doesnt exist      
@@ -170,12 +178,12 @@ toggleAllergyd(e){
 
     componentDidMount() {
     }
-    myfunction=()=>{
+    myfunction(){
       //*2event listner login coponent
       const search = document.getElementById('searchrecipe');
       
       const self = this;
-      search.addEventListener('click', function(event){
+      //search.addEventListener('click', function(event){
         // allergy for breakfast
         let bal = [];
         function allb(value, key, map) {
@@ -255,42 +263,48 @@ toggleAllergyd(e){
         // we need to make three separate fetch request one for breakfast lunch and dinner.
         // get request breakfast
       
-        fetch('/')
+        fetch(`${bApi}`)
         .then((res)=>{
           return res.json()
         }).then((data)=>{
+          //conditional to create how many based on array.length
+          console.log(data);
           self.setState({breakfast: {
-            b1:{title:data[0].title,summary:data[0].summary, image:data[0].image, source:data[0].spoonacularSourceUrl},
-            b2:{title:data[1].title,summary:data[1].summary, image:data[1].image, source:data[1].spoonacularSourceUrl},
-            b3:{title:data[2].title,summary:data[2].summary, image:data[2].image, source:data[2].spoonacularSourceUrl}
+            b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+            b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+            b3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
           }});
+
         })
         // get request lunch
         
-        fetch('/')
+        fetch(`${lApi}`)
         .then((res)=> {
           return res.json()
         }).then((data)=>{
           
           self.setState({lunch:  {
-            l1:{title:data[0].title,summary:data[0].summary, image:data[0].image, source:data[0].spoonacularSourceUrl},
-            l2:{title:data[1].title,summary:data[1].summary, image:data[1].image, source:data[1].spoonacularSourceUrl},
-            l3:{title:data[2].title,summary:data[2].summary, image:data[2].image, source:data[2].spoonacularSourceUrl}
+            l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+            l2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+            l3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
           }});
         })
         // get request dinner
-        fetch('/')
+        fetch(`${dApi}`)
         .then((res)=> {
           return res.json()
         }).then((data)=> {
           
           self.setState({dinner: {
-            d1:{title:data[0].title,summary:data[0].summary, image:data[0].image, source:data[0].spoonacularSourceUrl},
-            d2:{title:data[1].title,summary:data[1].summary, image:data[1].image, source:data[1].spoonacularSourceUrl},
-            d3:{title:data[2].title,summary:data[2].summary, image:data[2].image, source:data[2].spoonacularSourceUrl}
-          }});
-          self.setState({ingredientRender: 'result'});
-          self.setState({results: 'many'});
+            d1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
+            d2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
+            d3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
+          }},()=>{
+            self.setState({ingredientRender: 'result'});
+            self.setState({results: 'many'});
+            console.log(self.state.breakfast);
+
+          });
         })
         //need to grab the info needed from response and save in an object 
       
@@ -298,7 +312,7 @@ toggleAllergyd(e){
         // we need to see what are our response back from API.
 
         // need to setstate of ingredient render to result and results to many
-      })
+      //})
     }
   
     render() {
@@ -399,7 +413,7 @@ toggleAllergyd(e){
 
         </div> 
         </div>
-       <button type="button" name="searchrecipe" id="searchrecipe" >SEARCH RECIPES</button>
+       <button type="button" name="searchrecipe" id="searchrecipe" onClick={this.myfunction}>SEARCH RECIPES</button>
           
          
           

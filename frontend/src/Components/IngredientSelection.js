@@ -42,7 +42,7 @@ export default class IngredientSelection extends Component {
         let currentUser= self.props.user;
         let currentPass= self.props.pass;
           // '/existinguser/:user/:pass'
-        fetch("/api/login"+currentUser+'/'+currentPass)
+        fetch("/api/login/"+currentUser+'/'+currentPass)
         .then((res)=>{
           return res.json();})
           .then((data)=>{
@@ -59,17 +59,17 @@ export default class IngredientSelection extends Component {
       })
       //event listener for create new user
       create.addEventListener('click', function (event){
-        let currentUser= self.props.user;
-        let currentPass= self.props.pass;
+        let name= self.props.user;
+        let password= self.props.pass;
 
         //create a post request to store username and password
         const options={
           method:'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({currentUser,currentPass})
+          body: JSON.stringify({name,password})
         };
         // '/newuser
-        fetch('/', options)
+        fetch('/signUp', options)
         .then((res)=>{ return res.json()})
         .then((data)=>{ 
 
@@ -77,8 +77,8 @@ export default class IngredientSelection extends Component {
             alert(data);
             self.props.blank();
           }else{
-          self.setState({name: currentUser});
-          self.setState({pass: currentPass});
+          self.setState({name: name});
+          self.setState({pass: password});
             alert(data);
           
           self.props.blank();

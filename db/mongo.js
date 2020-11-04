@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
  //schema for Esculent
  const userSchema = new Schema({
-     User: {
+    
          name: String,
          password: String,
          mealPlan:{
@@ -18,10 +18,10 @@ const { Schema } = mongoose;
                  dinner: {},
                  consumedD: {},
          },
-        }
+    
  });
-
- module.exports = User = mongoose.model('Users', userSchema)
+const Users= mongoose.model('Users', userSchema)
+ module.exports =Users;
 //   //update with our schema layout
 //    // String is shorthand for {type: String}
     
