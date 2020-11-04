@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 
 
@@ -30,12 +30,13 @@ export default class Login extends Component {
 
     render() {
       return (
-        <div id={"login"}>
+        <Fragment>
         <div id={"title"}>
-        <h1>ESCULENT</h1>
+        ESCULENT
         </div>
+        <div id={"login"}>
             <div id={"logincont"}>
-            <h2>LOGIN</h2>
+            <h1>LOGIN</h1>
 
             <div className="content">
             <label htmlFor='username'>Username:</label>
@@ -44,7 +45,7 @@ export default class Login extends Component {
             <input  type='password' name='password' placeholder='password' value={this.props.pass} onChange={this.props.userPass} />
             </div>
             <div className='btn'>
-              <button type='button' name="login" id="loginbtn" className='btn'>
+              <button type='button' name="login" id="loginbtn" className='bttn'>
                 Login
               </button>
               <button type='button' name="create" id="create" className='bttn'>
@@ -53,6 +54,7 @@ export default class Login extends Component {
               </div>
              </div>
             </div>
+            </Fragment>
       )
     }
     };
