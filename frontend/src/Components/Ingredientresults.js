@@ -48,7 +48,7 @@ export default class Ingredientresults extends Component {
     }
 
     saveRecipe(){
-      this.props.onresult(this.state.breakfast, this.state.lunch, this.state.dinner);
+      this.props.oneresult(this.state.breakfast, this.state.lunch, this.state.dinner);
       //need to make fetch post to store user data need this.props.name, this.props.date, this.state.breakfast, this.state.lunch, this.state.dinner
 
     }
@@ -80,60 +80,69 @@ export default class Ingredientresults extends Component {
 
     //method to only allow user to click on selection in Breafast div
     b1change(){
+      var b1opt = {b1:{title:this.props.breakfast.b1.title, image:this.props.breakfast.b1.image, summary:this.props.breakfast.b1.summary, source:this.props.breakfast.b1.source}}
       this.setState({b1: true});
-      this.setState({breakfast:this.props.breakfast.b1});
+      this.setState({breakfast:b1opt});
       this.setState({b2: false});
       this.setState({b3: false});
     }
     b2change(){
+      var b2opt = {b1:{title:this.props.breakfast.b2.title, image:this.props.breakfast.b2.image, summary:this.props.breakfast.b2.summary, source:this.props.breakfast.b2.source}}
       this.setState({b2: true});
-      this.setState({breakfast:this.props.breakfast.b2});
+      this.setState({breakfast:b2opt});
       this.setState({b1: false});
       this.setState({b3: false});
     }
     b3change(){
+      var b3opt = {b1:{title:this.props.breakfast.b3.title, image:this.props.breakfast.b3.image, summary:this.props.breakfast.b3.summary, source:this.props.breakfast.b3.source}}
       this.setState({b3: true});
-      this.setState({breakfast:this.props.breakfast.b3});
+      this.setState({breakfast:b3opt});
       this.setState({b2: false});
       this.setState({b1: false});
     }
 
     //method to only allow user to click on selection in Lunch div
     l1change(){
+      var l1opt = {l1:{title:this.props.lunch.l1.title, image:this.props.lunch.l1.image, summary:this.props.lunch.l1.summary, source:this.props.lunch.l1.source}}
       this.setState({l1: true});
-      this.setState({lunch: this.props.lunch.l1});
+      this.setState({lunch: l1opt});
       this.setState({l2: false});
       this.setState({l3: false});
     }
     l2change(){
+      var l2opt = {l1:{title:this.props.lunch.l2.title, image:this.props.lunch.l2.image, summary:this.props.lunch.l2.summary, source:this.props.lunch.l2.source}}
       this.setState({l2: true});
-      this.setState({lunch: this.props.lunch.l2});
+      this.setState({lunch: l2opt});
       this.setState({l1: false});
       this.setState({l3: false});
     }
     l3change(){
+      var l3opt = {l1:{title:this.props.lunch.l3.title, image:this.props.lunch.l3.image, summary:this.props.lunch.l3.summary, source:this.props.lunch.l3.source}}
       this.setState({l3: true});
-      this.setState({lunch:this.props.lunch.l3});
+      this.setState({lunch: l3opt});
       this.setState({l2: false});
       this.setState({l1: false});
     }
     
     //method to only allow user to click on selection in Dinner div
     d1change(){
+      var d1opt = {d1:{title:this.props.dinner.d1.title, image:this.props.dinner.d1.image, summary:this.props.dinner.d1.summary, source:this.props.dinner.d1.source}}
       this.setState({d1: true});
-      this.setState({dinner:this.props.dinner.d1});
+      this.setState({dinner: d1opt});
       this.setState({d2: false});
       this.setState({d3: false});
     }
     d2change(){
+      var d2opt = {d1:{title:this.props.dinner.d2.title, image:this.props.dinner.d2.image, summary:this.props.dinner.d2.summary, source:this.props.dinner.d2.source}}
       this.setState({d2: true});
-      this.setState({dinner:this.props.dinner.d2});
+      this.setState({dinner: d2opt});
       this.setState({d1: false});
       this.setState({d3: false});
     }
     d3change(){
+      var d3opt = {d1:{title:this.props.dinner.d3.title, image:this.props.dinner.d3.image, summary:this.props.dinner.d3.summary, source:this.props.dinner.d3.source}}
       this.setState({d3: true});
-      this.setState({dinner:this.props.dinner.d3});
+      this.setState({dinner:d3opt});
       this.setState({d2: false});
       this.setState({d1: false});
     }
@@ -158,52 +167,90 @@ export default class Ingredientresults extends Component {
         results= <Fragment>
          <div id={"breakfast"}>
         <h1>BREAKFAST</h1>
-        <label>
-          <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}></input>
-          {this.props.breakfast.b1}
-        </label>
-        <label>
-          <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}></input>
-          {this.props.breakfast.b2}
-        </label>
-        <label>
-          <input name="b3" type="checkbox" checked={this.state.b3} onChange={this.b3change}></input>
-          {this.props.breakfast.b3}
-        </label>
+        <div id='options'>
+      <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
+        <label>{this.props.breakfast.b1.title}</label>
+          <img src={this.props.breakfast.b1.image}></img>
+          <p>{this.props.breakfast.b1.summary}</p>
+          <a href={this.props.breakfast.b1.source}>View Recipes</a>
+        </div>
+
+          <div id='options'>
+          <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}/>
+          <label>{this.props.breakfast.b2.title}</label>
+          <img src={this.props.breakfast.b2.image}></img>
+          <p>{this.props.breakfast.b2.summary}</p>
+          <a href={this.props.breakfast.b2.source}>View Recipes</a>
+          </div>
+
+          <div id='options'>
+          <input name="b3" type="checkbox" checked={this.state.b3} onChange={this.b3change}/>
+          <label>{this.props.breakfast.b3.title}</label>
+          <img src={this.props.breakfast.b3.image}></img>
+          <p>{this.props.breakfast.b3.summary}</p>
+          <a href={this.props.breakfast.b3.source}>View Recipes</a>
+          </div>
+        
       </div>
       <div id={"lunch"}>
         <h1>LUNCH</h1>
-        <label>
-          <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}></input>
-          {this.props.breakfast.l1}
-        </label>
-        <label>
-          <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}></input>
-          {this.props.breakfast.l2}
-        </label>
-        <label>
-          <input name="l3" type="checkbox" checked={this.state.l3} onChange={this.l3change}></input>
-          {this.props.breakfast.l3}
-        </label>
+          
+          <div id='options'>
+          <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
+        <label>{this.props.lunch.l1.title}</label>
+          <img src={this.props.lunch.l1.image}></img>
+          <p>{this.props.lunch.l1.summary}</p>
+          <a href={this.props.lunch.l1.source}>View Recipes</a>
+          </div>
+        
+        <div id='options'>
+          <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}/>
+          <label>{this.props.lunch.l2.title}</label>
+          <img src={this.props.lunch.l2.image}></img>
+          <p>{this.props.lunch.l2.summary}</p>
+          <a href={this.props.lunch.l2.source}>View Recipes</a>
+        </div>
+        
+        <div id='options'>
+          <input name="l3" type="checkbox" checked={this.state.l3} onChange={this.l3change}/>
+          <label>{this.props.lunch.l3.title}</label>
+          <img src={this.props.lunch.l3.image}></img>
+          <p>{this.props.lunch.l3.summary}</p>
+          <a href={this.props.lunch.l3.source}>View Recipes</a>
+        </div>
+        
 
       </div>
       <div id={"dinner"}>
         <h1>DINNER</h1>
-        <label>
-          <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}></input>
-          {this.props.breakfast.d1}
-        </label>
-        <label>
-          <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}></input>
-          {this.props.breakfast.d2}
-        </label>
-        <label>
-          <input name="d3" type="checkbox" checked={this.state.d3} onChange={this.d3change}></input>
-          {this.props.breakfast.d3}
-        </label>
+
+        <div id='options'>
+          <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
+        <label>{this.props.dinner.d1.title}</label>
+          <img src={this.props.dinner.d1.image}></img>
+          <p>{this.props.dinner.d1.summary}</p>
+          <a href={this.props.dinner.d1.source}>View Recipes</a>
+        </div>
+        
+        <div id='options'>
+       <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}/>
+          <label>{this.props.dinner.d2.title}</label>
+       <img src={this.props.dinner.d2.image}></img>
+          <p>{this.props.dinner.d2.summary}</p>
+          <a href={this.props.dinner.d2.source}>View Recipes</a>
+        </div>
+        
+        <div id='options'>
+          <input name="d3" type="checkbox" checked={this.state.d3} onChange={this.d3change}/>
+          <label>{this.props.dinner.d3.title}</label>
+          <img src={this.props.dinner.d3.image}></img>
+          <p>{this.props.dinner.d3.summary}</p>
+          <a href={this.props.dinner.d3.source}>View Recipes</a>
+        </div>
+       
 
       </div>
-      <button type="button" name="saverecipe" id="saverecipe" onClick={this.saveRecipe} >SEARCH RECIPES</button>
+      <button type="button" name="saverecipe" id="saverecipe" onClick={this.saveRecipe} >SAVE RECIPES</button>
 
      
      </Fragment>
@@ -212,29 +259,43 @@ export default class Ingredientresults extends Component {
         <Fragment>
          <div id={"breakfast"}>
         <h1>BREAKFAST</h1>
-        <label>
-          <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.consumedChange}></input>
-          {this.state.breakfast}
-        </label>
+        
+        <div id='options'>
+          <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.consumedChange}/>
+        <label>{this.props.breakfast.b1.title}</label>
+          <img src={this.props.breakfast.b1.image}></img>
+          <p>{this.props.breakfast.b1.summary}</p>
+          <a href={this.props.breakfast.b1.source}>View Recipes</a>
+        </div>
+        
       
       </div>
       <div id={"lunch"}>
         <h1>LUNCH</h1>
-        <label>
-          <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.consumedChange}></input>
-          {this.state.breakfast}
-        </label>
+
+        <div id='options'>
+          <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.consumedChange}/>
+        <label>{this.props.lunch.l1.title}</label>
+          <img src={this.props.lunch.l1.image}></img>
+          <p>{this.props.lunch.l1.summary}</p>
+          <a href={this.props.lunch.l1.source}>View Recipes</a>
+        </div>
+        
 
       </div>
       <div id={"dinner"}>
         <h1>DINNER</h1>
-        <label>
-          <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.consumedChange}></input>
-          {this.state.dinner}
-        </label>
+        
+        <div id='options'>
+          <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.consumedChange}/>
+        <label>{this.props.dinner.d1.title}</label>
+          <img src={this.props.dinner.d1.image}></img>
+          <p>{this.props.dinner.d1.summary}</p>
+          <a href={this.props.dinner.d1.source}>View Recipes</a>
+        </div>
+        
 
       </div>
-      <button type="button" name="saverecipe" id="saverecipe" >SEARCH RECIPES</button>
         <Goal consumed={this.state.consumed} />
      
      </Fragment>
@@ -243,33 +304,7 @@ export default class Ingredientresults extends Component {
 
       return (
         <div id={"results"}>
-        <div id={"breakfast"}>
-          <h1>BREAKFAST</h1>
-          <label>
-            <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}></input>
-            {this.props.breakfast.b1}
-          </label>
-          <label>
-            <input name="b1" type="checkbox" checked={this.state.b2} onChange={this.b2change}></input>
-            {this.props.breakfast.b2}
-          </label>
-          <label>
-            <input name="b1" type="checkbox" checked={this.state.b3} onChange={this.b3change}></input>
-            {this.props.breakfast.b3}
-          </label>
-        </div>
-        <div id={"lunch"}>
-          <h1>LUNCH</h1>
-
-        </div>
-        <div id={"dinner"}>
-          <h1>DINNER</h1>
-
-        </div>
-        <button type="button" name="saverecipe" id="saverecipe" >SEARCH RECIPES</button>
-
-       <Goal/>
-        {/* your code here */}
+          {results}
           
          
           
