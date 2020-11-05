@@ -163,8 +163,54 @@ export default class Ingredientresults extends Component {
     render() {
       //conditional to update with render with goal meter <Goal {this.state.consumed}/>
       var results;
+      var resultb;
+      var resultl;
+      var resultd;
       if(this.props.result === "many"){
-        results= <Fragment>
+        {/* if b3 === undefined && b2 === undefined && b1 === undefined --Alert 
+        if b3 === undefined && b2 === undefined && b1 === not undefined result === one option
+          if b3 === undefined && b2 === not undefined result === two option
+            else three options*/}
+            if(this.props.breakfast === null) {
+              resultb = <Fragment>
+
+              <div>No Recipes Found</div>
+              </Fragment>
+            } else if(this.props.breakfast.b2 === undefined) {
+              resultb = <Fragment>
+                <div id={"breakfast"}>
+        <h1>BREAKFAST</h1>
+        <div id='options'>
+      <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
+        <label>{this.props.breakfast.b1.title}</label>
+          <img src={this.props.breakfast.b1.image}></img>
+          <p>{this.props.breakfast.b1.summary}</p>
+          <a href={this.props.breakfast.b1.source}>View Recipes</a>
+            </div>
+            </div>
+              </Fragment>
+            } else if(this.props.breakfast.b3 === undefined) {
+              resultb = <Fragment>
+                 <div id={"breakfast"}>
+        <h1>BREAKFAST</h1>
+        <div id='options'>
+      <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
+        <label>{this.props.breakfast.b1.title}</label>
+          <img src={this.props.breakfast.b1.image}></img>
+          <p>{this.props.breakfast.b1.summary}</p>
+          <a href={this.props.breakfast.b1.source}>View Recipes</a>
+        </div>
+
+          <div id='options'>
+          <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}/>
+          <label>{this.props.breakfast.b2.title}</label>
+          <img src={this.props.breakfast.b2.image}></img>
+          <p>{this.props.breakfast.b2.summary}</p>
+          <a href={this.props.breakfast.b2.source}>View Recipes</a>
+          </div> </div>
+                </Fragment>
+            } else {
+              resultb= <Fragment>
          <div id={"breakfast"}>
         <h1>BREAKFAST</h1>
         <div id='options'>
@@ -191,7 +237,49 @@ export default class Ingredientresults extends Component {
           <a href={this.props.breakfast.b3.source}>View Recipes</a>
           </div>
         
-      </div>
+      </div></Fragment>
+            }
+                  if(this.props.lunch === null) {
+                    resultl = <Fragment>
+                    <div>No Recipes Found</div>
+                    </Fragment>
+                  } else if(this.props.lunch.l2 === undefined) {
+                    resultl = <Fragment>
+                       <div id={"lunch"}>
+               <h1>LUNCH</h1>
+          <div id='options'>
+          <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
+        <label>{this.props.lunch.l1.title}</label>
+          <img src={this.props.lunch.l1.image}></img>
+          <p>{this.props.lunch.l1.summary}</p>
+          <a href={this.props.lunch.l1.source}>View Recipes</a>
+          </div></div>
+                    </Fragment>
+                  } else if(this.props.lunch.l3 === undefined) {
+                      resultl = <Fragment>
+                        <div id={"lunch"}>
+        <h1>LUNCH</h1>
+          
+          <div id='options'>
+          <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
+        <label>{this.props.lunch.l1.title}</label>
+          <img src={this.props.lunch.l1.image}></img>
+          <p>{this.props.lunch.l1.summary}</p>
+          <a href={this.props.lunch.l1.source}>View Recipes</a>
+          </div>
+        
+        <div id='options'>
+          <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}/>
+          <label>{this.props.lunch.l2.title}</label>
+          <img src={this.props.lunch.l2.image}></img>
+          <p>{this.props.lunch.l2.summary}</p>
+          <a href={this.props.lunch.l2.source}>View Recipes</a>
+        </div></div>
+                      </Fragment>
+                  } else {
+                    resultl =
+                    <Fragment>
+
       <div id={"lunch"}>
         <h1>LUNCH</h1>
           
@@ -218,9 +306,52 @@ export default class Ingredientresults extends Component {
           <p>{this.props.lunch.l3.summary}</p>
           <a href={this.props.lunch.l3.source}>View Recipes</a>
         </div>
-        
+
 
       </div>
+                    </Fragment>
+     }
+          if(this.props.dinner === null) {
+            resultd = <Fragment>
+            <div>No Recipes Found</div>
+            </Fragment>
+          } else if(this.props.dinner.d2 === undefined) {
+            resultd = <Fragment>
+              <div id={"dinner"}>
+        <h1>DINNER</h1>
+
+        <div id='options'>
+          <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
+        <label>{this.props.dinner.d1.title}</label>
+          <img src={this.props.dinner.d1.image}></img>
+          <p>{this.props.dinner.d1.summary}</p>
+          <a href={this.props.dinner.d1.source}>View Recipes</a>
+        </div></div>
+            </Fragment>
+          } else if(this.props.dinner.d3 === undefined) {
+              resultd = <Fragment>
+                <div id={"dinner"}>
+        <h1>DINNER</h1>
+
+        <div id='options'>
+          <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
+        <label>{this.props.dinner.d1.title}</label>
+          <img src={this.props.dinner.d1.image}></img>
+          <p>{this.props.dinner.d1.summary}</p>
+          <a href={this.props.dinner.d1.source}>View Recipes</a>
+        </div>
+        
+        <div id='options'>
+       <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}/>
+          <label>{this.props.dinner.d2.title}</label>
+       <img src={this.props.dinner.d2.image}></img>
+          <p>{this.props.dinner.d2.summary}</p>
+          <a href={this.props.dinner.d2.source}>View Recipes</a>
+        </div></div>
+              </Fragment>
+          } else {
+            resultd =
+            <Fragment>
       <div id={"dinner"}>
         <h1>DINNER</h1>
 
@@ -252,8 +383,8 @@ export default class Ingredientresults extends Component {
       </div>
       <button type="button" name="saverecipe" id="saverecipe" onClick={this.saveRecipe} >SAVE RECIPES</button>
 
-     
-     </Fragment>
+            </Fragment>
+          }
       }else if(this.props.result === "one"){
         results=
         <Fragment>
@@ -305,7 +436,9 @@ export default class Ingredientresults extends Component {
       return (
         <div id={"results"}>
           {results}
-          
+          {resultb}
+          {resultl}
+          {resultd}
          
           
         </div>
