@@ -275,24 +275,29 @@ toggleAllergyd(e){
               b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
               b3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
             }},()=>{
-              console.log(self.state.breakfast.b4);
+              lunch();
             });
 
           } else if(data.results.length === 2) {
             self.setState({breakfast: {
               b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
               b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
-            }});
+            }},()=>{
+              lunch();
+            });
           } else if(data.results.length === 1) {
             self.setState({breakfast: {
               b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
-            }});
-          } else {
-            alert('No Recipes Found');
+            }},()=>{
+              lunch();
+            });
+          } else{
+            alert('No Recipes Found in Breakfast change selections');
           }
 
         })
         // get request lunch
+        function lunch(){
         
         fetch(`${lApi}`)
         .then((res)=> {
@@ -303,20 +308,30 @@ toggleAllergyd(e){
               l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
               l2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
               l3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
-            }});
+            }},()=>{
+              dinner();
+            });
           } else if(data.results.length === 2){
             self.setState({lunch:  {
               l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
               l2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
-            }});
+            }},()=>{
+              dinner();
+            });
           } else if(data.results.length === 1){
             self.setState({lunch:  {
               l1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
-            }});
+            }},()=>{
+              dinner();
+            });
           } else {
-            alert('No Recipes Found')
+            alert('No Recipes Found for Lunch change selections');
           }
         })
+      }
+
+
+      function dinner(){
         // get request dinner
         fetch(`${dApi}`)
         .then((res)=> {
@@ -330,8 +345,6 @@ toggleAllergyd(e){
             }},()=>{
               self.setState({ingredientRender: 'result'});
               self.setState({results: 'many'});
-              console.log(self.state.breakfast);
-  
             });
           } else if(data.results.length === 2){
             self.setState({dinner: {
@@ -340,22 +353,21 @@ toggleAllergyd(e){
             }},()=>{
               self.setState({ingredientRender: 'result'});
               self.setState({results: 'many'});
-              console.log(self.state.breakfast);
-  
             });
           } else if(data.results.length === 1){
             self.setState({dinner: {
               d1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
             }},()=>{
               self.setState({ingredientRender: 'result'});
-              self.setState({results: 'many'});
-              console.log(self.state.breakfast);
-  
+              self.setState({results: 'many'}); 
             });
           } else {
-            alert('No Recipes Found');
+            alert('No Recipes Found for Dinner change selections');
           }
         })
+      }
+
+        
         //need to grab the info needed from response and save in an object 
       
 
