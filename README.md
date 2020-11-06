@@ -23,10 +23,14 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
     * Outputs- Recipes to select for breakfast, lunch, and dinner.
 ## Tech stack ( you can include logos)
 ## Technical Challenges and research that you anticipated
-    * Why, what was the plan to overcome those challenges?
+    * Building routes for our MongoDB server in seperate JS files based on what they needed to do.
+
+    Why, what was the plan to overcome those challenges?
     * What did you learn?
 ## Challenges that were unexpected
-    * Why was it a challenge
+    * Rendering a string of HTML tags in React.
+        If not set correctly it will show all HTML tags as string values. To help alleviate the problem we unfortunately had to set the inner HTMl. This is not best practice and will prolly try to reformat to use a library instead.
+
     * What did you learn?
 ## Video Demo / Screen shot walkthrough of the app 
     * What were the user stories /  what was MVP (mention Minimal Viable Product)
@@ -52,3 +56,13 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
     * Future refactoring?
     * Additional dev ops considerations?
     * UI/UX additions?
+
+## Getting Started
+    1.Install your dependecies (npm run install-all)
+    2. Start your server (nodemon mongo_server.js)
+    3. Start your react app (npm run start:react)
+    4. View page and create a user
+    5. Login as user
+    6. Select options for Breakfast/Lunch/Dinner
+    7. Pick one option from three choices from Breakfast/Lunch/Dinner
+    8. As you consume a meal check the box and watch the progress bar fill up
