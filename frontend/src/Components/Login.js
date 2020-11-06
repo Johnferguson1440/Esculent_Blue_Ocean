@@ -9,7 +9,7 @@ export default class Login extends Component {
       this.state = {
        
       };
-      // this.api = `http://localhost:8000/api/example`;
+     
     }
 
 
@@ -17,20 +17,15 @@ export default class Login extends Component {
       
 
     // componentDidMount() {
-    //   fetch(this.api)
-    //     .then(res => res.json())
-    //     .then(seaCreatures => {
-         
-    //     });
-    // }
-    //  valueChange(e) {
-    //   console.log(e.target.value)
+    
     // }
   
 
     render() {
-      return (
-        <Fragment>
+      //conditional render once login success make login only show a button to sign out
+      var loginRender;
+      if(this.props.login=== true){
+        loginRender= <Fragment>
         <div id={"title"}>
         ESCULENT
         </div>
@@ -54,6 +49,32 @@ export default class Login extends Component {
               </div>
              </div>
             </div>
+            </Fragment>
+
+      }else{
+        loginRender=<Fragment>
+        <div id={"title"}>
+        ESCULENT
+        </div>
+        <div id={"login"}>
+            <div id={"logincont"}>
+           
+              <button type='button' name="logout" id="logout" className='bttn'>
+                Log Out!
+              </button>
+             
+             </div>
+            </div>
+            </Fragment>
+
+      }
+
+
+
+
+      return (
+        <Fragment>
+        {loginRender}
             </Fragment>
       )
     }
