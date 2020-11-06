@@ -6,14 +6,21 @@ It is recommended that you *start* the readme.md during the sprint, and complete
 You should replace the existing readme.md in your repo with the following information:
 ## Catchy headline / cool graphic
 ## Who are the contributors (names should link to their github or portfolio page)
+    * Benjamin Jackson- https://github.com/bustlingbenjamin
+    * John Ferguson- https://github.com/Johnferguson1440
+    * Larry Pruitt- https://github.com/lpruiettjr
+    * Jinsik Kim- https://github.com/rlawlstlr93
 ## Introduction
 This project was a brief 1-week sprint where our team tried to complete an MVP for an external user **(Jane Doe)**
  - Add any additional content here pertaining to timeline, any personal goals, etc
 ## What does the app do? 
     * What problem does it solve? Who uses it?
+    * This APP allows you to build a daily meal planner based off of intolerances, nutrients, and ingredients.
     * Why was it built?
+    * To help a Mother-To-Be ensure she was making her daily consumption of nutrients daily.(And to help her come up with ne recipes to try..)
     * User Inputs and Outputs
-    * 
+    * Inputs- Intolerances, Nutrients, Ingredients...
+    * Outputs- Recipes to select for breakfast, lunch, and dinner.
 ## Tech stack ( you can include logos)
 ## Technical Challenges and research that you anticipated
     * Why, what was the plan to overcome those challenges?
