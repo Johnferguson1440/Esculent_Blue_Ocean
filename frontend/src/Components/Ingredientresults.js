@@ -1,5 +1,5 @@
 import React, { Component, Fragment} from 'react';
-
+import parse from 'html-react-parser';  
 
 import Goal from "./GoalMeter.js";
 
@@ -184,7 +184,7 @@ export default class Ingredientresults extends Component {
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image}></img>
-          <p>{this.props.breakfast.b1.summary}</p>
+          <div>{parse(`<div>${this.props.breakfast.b1.summary}</div>`)}</div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
             </div>
             </div>
@@ -197,7 +197,7 @@ export default class Ingredientresults extends Component {
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image}></img>
-          <p>{this.props.breakfast.b1.summary}</p>
+          <div>{this.props.breakfast.b1.summary}</div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
         </div>
 
@@ -205,7 +205,7 @@ export default class Ingredientresults extends Component {
           <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}/>
           <label>{this.props.breakfast.b2.title}</label>
           <img src={this.props.breakfast.b2.image}></img>
-          <p>{this.props.breakfast.b2.summary}</p>
+          <div>{this.props.breakfast.b2.summary}</div>
           <a href={this.props.breakfast.b2.source}>View Recipes</a>
           </div> </div>
                 </Fragment>
@@ -217,7 +217,7 @@ export default class Ingredientresults extends Component {
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image}></img>
-          <p>{this.props.breakfast.b1.summary}</p>
+          <div>{this.props.breakfast.b1.summary}</div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
         </div>
 
@@ -225,7 +225,7 @@ export default class Ingredientresults extends Component {
           <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}/>
           <label>{this.props.breakfast.b2.title}</label>
           <img src={this.props.breakfast.b2.image}></img>
-          <p>{this.props.breakfast.b2.summary}</p>
+          <div>{this.props.breakfast.b2.summary}</div>
           <a href={this.props.breakfast.b2.source}>View Recipes</a>
           </div>
 
@@ -233,7 +233,7 @@ export default class Ingredientresults extends Component {
           <input name="b3" type="checkbox" checked={this.state.b3} onChange={this.b3change}/>
           <label>{this.props.breakfast.b3.title}</label>
           <img src={this.props.breakfast.b3.image}></img>
-          <p>{this.props.breakfast.b3.summary}</p>
+          <div>{this.props.breakfast.b3.summary}</div>
           <a href={this.props.breakfast.b3.source}>View Recipes</a>
           </div>
         
@@ -251,7 +251,7 @@ export default class Ingredientresults extends Component {
           <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image}></img>
-          <p>{this.props.lunch.l1.summary}</p>
+          <div>{this.props.lunch.l1.summary}</div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
           </div></div>
                     </Fragment>
@@ -264,7 +264,7 @@ export default class Ingredientresults extends Component {
           <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image}></img>
-          <p>{this.props.lunch.l1.summary}</p>
+          <div>{this.props.lunch.l1.summary}</div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
           </div>
         
@@ -272,7 +272,7 @@ export default class Ingredientresults extends Component {
           <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}/>
           <label>{this.props.lunch.l2.title}</label>
           <img src={this.props.lunch.l2.image}></img>
-          <p>{this.props.lunch.l2.summary}</p>
+          <div>{this.props.lunch.l2.summary}</div>
           <a href={this.props.lunch.l2.source}>View Recipes</a>
         </div></div>
                       </Fragment>
@@ -287,7 +287,7 @@ export default class Ingredientresults extends Component {
           <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image}></img>
-          <p>{this.props.lunch.l1.summary}</p>
+          <div>{this.props.lunch.l1.summary}</div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
           </div>
         
@@ -295,7 +295,7 @@ export default class Ingredientresults extends Component {
           <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}/>
           <label>{this.props.lunch.l2.title}</label>
           <img src={this.props.lunch.l2.image}></img>
-          <p>{this.props.lunch.l2.summary}</p>
+          <div>{this.props.lunch.l2.summary}</div>
           <a href={this.props.lunch.l2.source}>View Recipes</a>
         </div>
         
@@ -303,7 +303,7 @@ export default class Ingredientresults extends Component {
           <input name="l3" type="checkbox" checked={this.state.l3} onChange={this.l3change}/>
           <label>{this.props.lunch.l3.title}</label>
           <img src={this.props.lunch.l3.image}></img>
-          <p>{this.props.lunch.l3.summary}</p>
+          <div>{this.props.lunch.l3.summary}</div>
           <a href={this.props.lunch.l3.source}>View Recipes</a>
         </div>
 
@@ -324,7 +324,7 @@ export default class Ingredientresults extends Component {
           <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image}></img>
-          <p>{this.props.dinner.d1.summary}</p>
+          <div>{this.props.dinner.d1.summary}</div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div></div>
             </Fragment>
@@ -337,7 +337,7 @@ export default class Ingredientresults extends Component {
           <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image}></img>
-          <p>{this.props.dinner.d1.summary}</p>
+          <div>{this.props.dinner.d1.summary}</div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div>
         
@@ -345,7 +345,7 @@ export default class Ingredientresults extends Component {
        <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}/>
           <label>{this.props.dinner.d2.title}</label>
        <img src={this.props.dinner.d2.image}></img>
-          <p>{this.props.dinner.d2.summary}</p>
+          <div>{this.props.dinner.d2.summary}</div>
           <a href={this.props.dinner.d2.source}>View Recipes</a>
         </div></div>
               </Fragment>
@@ -359,7 +359,7 @@ export default class Ingredientresults extends Component {
           <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image}></img>
-          <p>{this.props.dinner.d1.summary}</p>
+          <div>{this.props.dinner.d1.summary}</div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div>
         
@@ -367,7 +367,7 @@ export default class Ingredientresults extends Component {
        <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}/>
           <label>{this.props.dinner.d2.title}</label>
        <img src={this.props.dinner.d2.image}></img>
-          <p>{this.props.dinner.d2.summary}</p>
+          <div>{this.props.dinner.d2.summary}</div>
           <a href={this.props.dinner.d2.source}>View Recipes</a>
         </div>
         
@@ -375,7 +375,7 @@ export default class Ingredientresults extends Component {
           <input name="d3" type="checkbox" checked={this.state.d3} onChange={this.d3change}/>
           <label>{this.props.dinner.d3.title}</label>
           <img src={this.props.dinner.d3.image}></img>
-          <p>{this.props.dinner.d3.summary}</p>
+          <div>{this.props.dinner.d3.summary}</div>
           <a href={this.props.dinner.d3.source}>View Recipes</a>
         </div>
        
@@ -395,7 +395,7 @@ export default class Ingredientresults extends Component {
           <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.consumedChange}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image}></img>
-          <p>{this.props.breakfast.b1.summary}</p>
+          <div>{this.props.breakfast.b1.summary}</div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
         </div>
         
@@ -408,7 +408,7 @@ export default class Ingredientresults extends Component {
           <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.consumedChange}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image}></img>
-          <p>{this.props.lunch.l1.summary}</p>
+          <div>{this.props.lunch.l1.summary}</div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
         </div>
         
@@ -421,7 +421,7 @@ export default class Ingredientresults extends Component {
           <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.consumedChange}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image}></img>
-          <p>{this.props.dinner.d1.summary}</p>
+          <div>{this.props.dinner.d1.summary}</div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div>
         
