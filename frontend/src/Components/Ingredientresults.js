@@ -1,5 +1,6 @@
 import React, { Component, Fragment} from 'react';
-import parse from 'html-react-parser';  
+
+import parse from 'html-react-parser';
 
 import Goal from "./GoalMeter.js";
 
@@ -34,6 +35,10 @@ export default class Ingredientresults extends Component {
         consumed: 0,
         
       };
+      this.c1change= this.c1change.bind(this);
+      this.c2change= this.c2change.bind(this);
+      this.c3change= this.c3change.bind(this);
+
       this.b1change= this.b1change.bind(this);
       this.b2change= this.b2change.bind(this);
       this.b3change= this.b3change.bind(this);
@@ -44,7 +49,7 @@ export default class Ingredientresults extends Component {
       this.d2change= this.d2change.bind(this);
       this.d3change= this.d3change.bind(this);
       this.saveRecipe=this.saveRecipe.bind(this);
-      this.consumedChange=this.consumedChange.bind(this);
+      
     }
 
     saveRecipe(){
@@ -59,8 +64,10 @@ export default class Ingredientresults extends Component {
       this.setState({dinner:this.props.dinner});
       this.setState({results:"one"});
     }
-    consumedChange(){
-      let breakCon= this.state.c1;
+    
+    c1change(){
+      this.setState({c1: !this.state.c1},()=>{
+        let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
 
@@ -73,7 +80,41 @@ export default class Ingredientresults extends Component {
       }else{
         this.setState({consumed: 0});
       }
+      })
+    }
+    c2change(){
+      this.setState({c2: !this.state.c2},()=>{
+        let breakCon= this.state.c1;
+      let lunchCon=this.state.c2;
+      let dinnerCon=this.state.c3;
 
+      if(breakCon === true & lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 100});
+      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 66});
+      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
+        this.setState({consumed: 33});
+      }else{
+        this.setState({consumed: 0});
+      }
+      })
+    }
+    c3change(){
+      this.setState({c3: !this.state.c3},()=>{
+        let breakCon= this.state.c1;
+      let lunchCon=this.state.c2;
+      let dinnerCon=this.state.c3;
+
+      if(breakCon === true & lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 100});
+      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 66});
+      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
+        this.setState({consumed: 33});
+      }else{
+        this.setState({consumed: 0});
+      }
+      })
     }
 
 
@@ -184,7 +225,7 @@ export default class Ingredientresults extends Component {
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image}></img>
-          <div>{parse(`<div>${this.props.breakfast.b1.summary}</div>`)}</div>
+          <div>{parse(this.props.breakfast.b1.summary)}</div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
             </div>
             </div>
@@ -392,7 +433,7 @@ export default class Ingredientresults extends Component {
         <h1>BREAKFAST</h1>
         
         <div id='options'>
-          <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.consumedChange}/>
+          <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.c1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image}></img>
           <div>{this.props.breakfast.b1.summary}</div>
@@ -405,7 +446,7 @@ export default class Ingredientresults extends Component {
         <h1>LUNCH</h1>
 
         <div id='options'>
-          <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.consumedChange}/>
+          <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.c2change}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image}></img>
           <div>{this.props.lunch.l1.summary}</div>
@@ -418,7 +459,7 @@ export default class Ingredientresults extends Component {
         <h1>DINNER</h1>
         
         <div id='options'>
-          <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.consumedChange}/>
+          <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.c3change}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image}></img>
           <div>{this.props.dinner.d1.summary}</div>

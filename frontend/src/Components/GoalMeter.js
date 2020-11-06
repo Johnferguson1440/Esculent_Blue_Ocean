@@ -12,16 +12,12 @@ export default class Goal extends Component {
       this.state = {
         progress:50
       };
-      this.api = `http://localhost:8000/api/example`;
+      
     }
 
 
     componentDidMount() {
-      fetch(this.api)
-        .then(res => res.json())
-        .then(seaCreatures => {
-         
-        });
+     
     }
 
     
