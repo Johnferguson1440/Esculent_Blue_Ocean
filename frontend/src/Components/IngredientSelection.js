@@ -50,6 +50,8 @@ export default class IngredientSelection extends Component {
                 alert(data);
                 self.setState({name: self.props.user});
                 self.setState({pass: self.props.pass}); 
+                self.props.login();
+               
                 self.props.blank();
             }else{
               alert(data);
@@ -77,8 +79,8 @@ export default class IngredientSelection extends Component {
             alert(data);
             self.props.blank();
           }else{
-          self.setState({name: name});
-          self.setState({pass: password});
+          // self.setState({name: name});
+          // self.setState({pass: password});
             alert(data);
           
           self.props.blank();
@@ -100,7 +102,7 @@ export default class IngredientSelection extends Component {
         <h1>{this.state.name} DAILY NUTRITION PLAN</h1>        
                  
         </div>  
-        <PickIngredients name={this.state.name} />
+        <PickIngredients  login={this.props.login} name={this.state.name} />
         
      
        

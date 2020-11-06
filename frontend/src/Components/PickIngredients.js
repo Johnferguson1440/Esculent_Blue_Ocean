@@ -177,7 +177,14 @@ toggleAllergyd(e){
    
 
     componentDidMount() {
+      
+      
     }
+  
+  
+
+
+    
     myfunction(){
       //*2event listner login coponent
       const search = document.getElementById('searchrecipe');
@@ -267,6 +274,8 @@ toggleAllergyd(e){
         .then((res)=>{
           return res.json()
         }).then((data)=>{
+
+          
           //conditional to create how many based on array.length
           console.log(data.results.length);
           if(data.results.length === 3) {
@@ -275,6 +284,7 @@ toggleAllergyd(e){
               b2:{title:data.results[1].title,summary:data.results[1].summary, image:data.results[1].image, source:data.results[1].spoonacularSourceUrl},
               b3:{title:data.results[2].title,summary:data.results[2].summary, image:data.results[2].image, source:data.results[2].spoonacularSourceUrl}
             }},()=>{
+              
               lunch();
             });
 

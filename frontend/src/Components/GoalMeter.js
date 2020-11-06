@@ -30,7 +30,7 @@ export default class Goal extends Component {
         <div id="progressBar-container">
           <div id ='progressBar'>
             
-          <ProgressBar now = {this.state.progress} variant="success" label={`${this.state.progress}% Success`}/>
+          <ProgressBar now = {this.props.consumed} variant="success" label={`${this.props.consumed}% Success`}/>
 
           </div>
       </div>
