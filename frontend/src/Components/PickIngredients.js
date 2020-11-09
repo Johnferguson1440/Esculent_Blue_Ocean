@@ -59,6 +59,7 @@ export default class PickIngredients extends Component {
       this.toggleCheckboxChanged= this.toggleCheckboxChanged.bind(this);
       this.oneResult=this.oneResult.bind(this);
       this.myfunction=this.myfunction.bind(this);
+     
       
       
     }
@@ -72,18 +73,22 @@ export default class PickIngredients extends Component {
     }
 
     dateChange(date){      
-      console.log(date.toLocaleDateString());
-     
+      this.setState({startDate:date});
+      
       //when date is selected need to set state to current date
-      this.setState({selectedDate: date.toLocaleDateString()});
-      var date =this.state.selectedDate;
-      var name=this.props.name
-      const options={
-        method:'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({date,name})
-      };
-      this.setState({startDate: date}, ()=>{
+      this.setState({selectedDate: date.toLocaleDateString()}, ()=>{
+        
+        
+        
+        var date =this.state.selectedDate;
+        var name=this.props.name
+        const options={
+          method:'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({date,name})
+        };
+
+
         //make api call to db to see if user has info for that date yet
         fetch("/api/date", options)
         .then((res)=>{ return res.json();})
@@ -104,6 +109,10 @@ export default class PickIngredients extends Component {
           }
         })
       });
+
+
+
+
       
 
     }  
@@ -172,14 +181,15 @@ toggleAllergyd(e){
     }
 
 
-
+   
 
    
 
     componentDidMount() {
-      
+     
       
     }
+    
   
   
 
@@ -187,7 +197,7 @@ toggleAllergyd(e){
     
     myfunction(){
       //*2event listner login coponent
-      const search = document.getElementById('searchrecipe');
+     // const search = document.getElementById('searchrecipe');
       
       const self = this;
       //search.addEventListener('click', function(event){
@@ -226,8 +236,8 @@ toggleAllergyd(e){
           }
           self.state.allergyl.forEach(alll);
           let lunchAllergy = '';
-          for (var a =0; a<lal.length; a++) {
-            lunchAllergy = lunchAllergy + lal[a] + ',';
+          for (var b =0; b<lal.length; b++) {
+            lunchAllergy = lunchAllergy + lal[b] + ',';
           }
         // nutrient for lunch
             const lnut = [];
@@ -238,8 +248,8 @@ toggleAllergyd(e){
             }
             self.state.checkedItemsl.forEach(nutl);
               let lunchNutrient = '';
-              for (var n = 0; n < lnut.length; n++) {
-                lunchNutrient = lunchNutrient + 'min' + lnut[n] + '=10&';
+              for (var o = 0; o < lnut.length; o++) {
+                lunchNutrient = lunchNutrient + 'min' + lnut[o] + '=10&';
               }
           var lApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textl}&${lunchNutrient}intolerances=${lunchAllergy.slice(0,-1)}`
         // allergy for dinner
@@ -251,8 +261,8 @@ toggleAllergyd(e){
       }
       self.state.allergyd.forEach(alld);
       let dinnerAllergy = '';
-      for (var a =0; a< dal.length; a++) {
-        dinnerAllergy = dinnerAllergy + dal[a] + ',';
+      for (var c =0; c< dal.length; c++) {
+        dinnerAllergy = dinnerAllergy + dal[c] + ',';
       }
         // nutrient for dinner
         const dnut = [];
@@ -263,7 +273,7 @@ toggleAllergyd(e){
         }
         self.state.checkedItemsd.forEach(nutd);
         let dinnerNutrient = '';
-        for (var n=0; n<dnut.length; n++) {
+        for (var p=0; p<dnut.length; p++) {
           dinnerNutrient = dinnerNutrient + 'min' + dnut[n] + '=10&';
         }
         var dApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textd}&${dinnerNutrient}intolerances=${dinnerAllergy.slice(0,-1)}`
@@ -277,7 +287,7 @@ toggleAllergyd(e){
 
           
           //conditional to create how many based on array.length
-          console.log(data.results.length);
+          
           if(data.results.length === 3) {
             self.setState({breakfast: {
               b1:{title:data.results[0].title,summary:data.results[0].summary, image:data.results[0].image, source:data.results[0].spoonacularSourceUrl},
@@ -386,6 +396,8 @@ toggleAllergyd(e){
         // need to setstate of ingredient render to result and results to many
       //})
     }
+    
+
   
     render() {
 

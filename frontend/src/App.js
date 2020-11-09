@@ -23,6 +23,7 @@ export default class App extends Component {
      
       
     };
+    this.loginChange=this.loginChange.bind(this);
     // this.api = `http://localhost:8000/api/example`;
   }
 
@@ -56,8 +57,8 @@ export default class App extends Component {
       <div id={"main"}>
         
 
-        <Login login={this.state.login} user={this.state.username} userChange={this.changeUser.bind(this)} pass={this.state.password}  userPass={this.changePass.bind(this)} />
-        <IngredientSelection  user={this.state.username} pass={this.state.password} blank={this.blankUser.bind(this)} login={this.loginChange.bind(this)}  /> 
+        <Login login={this.state.login} user={this.state.username} userChange={this.changeUser.bind(this)} pass={this.state.password}  userPass={this.changePass.bind(this)} loginChange={this.loginChange.bind(this)} />
+        <IngredientSelection  user={this.state.username} pass={this.state.password} blank={this.blankUser.bind(this)} loginChange={this.loginChange.bind(this)} login={this.state.login} /> 
         
 
       </div>

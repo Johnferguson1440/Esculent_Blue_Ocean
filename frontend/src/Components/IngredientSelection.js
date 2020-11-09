@@ -50,7 +50,7 @@ export default class IngredientSelection extends Component {
                 alert(data);
                 self.setState({name: self.props.user});
                 self.setState({pass: self.props.pass}); 
-                self.props.login();
+                self.props.loginChange();
                
                 self.props.blank();
             }else{
