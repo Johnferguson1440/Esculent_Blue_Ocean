@@ -59,7 +59,7 @@ export default class Login extends Component {
         <div id={"login"}>
             <div id={"logincont"}>
            
-              <button type='button' name="logout" id="logout" className='bttn'>
+              <button type='button' name="logout" id="logout" className='bttn' onClick={()=>window.location.reload(false)} >
                 Log Out!
               </button>
              

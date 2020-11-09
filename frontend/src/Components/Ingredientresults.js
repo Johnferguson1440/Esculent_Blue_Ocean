@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 
-import parse from 'html-react-parser';
+
 
 import Goal from "./GoalMeter.js";
 
@@ -210,10 +210,7 @@ export default class Ingredientresults extends Component {
       var resultl;
       var resultd;
       if(this.props.result === "many"){
-        {/* if b3 === undefined && b2 === undefined && b1 === undefined --Alert 
-        if b3 === undefined && b2 === undefined && b1 === not undefined result === one option
-          if b3 === undefined && b2 === not undefined result === two option
-            else three options*/}
+      
             if(this.props.breakfast === null) {
               resultb = <Fragment>
 
@@ -226,7 +223,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
-          <img src={this.props.breakfast.b1.image}></img>
+          <img src={this.props.breakfast.b1.image} alt={this.props.breakfast.b1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b1.summary}}></div>
           
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
@@ -240,7 +237,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
-          <img src={this.props.breakfast.b1.image}></img>
+          <img src={this.props.breakfast.b1.image} alt={this.props.breakfast.b1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b1.summary}}></div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
         </div>
@@ -248,7 +245,7 @@ export default class Ingredientresults extends Component {
           <div id='options'>
           <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}/>
           <label>{this.props.breakfast.b2.title}</label>
-          <img src={this.props.breakfast.b2.image}></img>
+          <img src={this.props.breakfast.b2.image} alt={this.props.breakfast.b2.title} ></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b2.summary}}></div>
           <a href={this.props.breakfast.b2.source}>View Recipes</a>
           </div> </div>
@@ -260,7 +257,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
       <input name="b1" type="checkbox" checked={this.state.b1} onChange={this.b1change}/>
         <label>{this.props.breakfast.b1.title}</label>
-          <img src={this.props.breakfast.b1.image}></img>
+          <img src={this.props.breakfast.b1.image} alt={this.props.breakfast.b1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b1.summary}}></div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
         </div>
@@ -268,7 +265,7 @@ export default class Ingredientresults extends Component {
           <div id='options'>
           <input name="b2" type="checkbox" checked={this.state.b2} onChange={this.b2change}/>
           <label>{this.props.breakfast.b2.title}</label>
-          <img src={this.props.breakfast.b2.image}></img>
+          <img src={this.props.breakfast.b2.image} alt={this.props.breakfast.b2.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b2.summary}}></div>
           <a href={this.props.breakfast.b2.source}>View Recipes</a>
           </div>
@@ -276,7 +273,7 @@ export default class Ingredientresults extends Component {
           <div id='options'>
           <input name="b3" type="checkbox" checked={this.state.b3} onChange={this.b3change}/>
           <label>{this.props.breakfast.b3.title}</label>
-          <img src={this.props.breakfast.b3.image}></img>
+          <img src={this.props.breakfast.b3.image} alt={this.props.breakfast.b3.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b3.summary}}></div>
           <a href={this.props.breakfast.b3.source}>View Recipes</a>
           </div>
@@ -294,7 +291,7 @@ export default class Ingredientresults extends Component {
           <div id='options'>
           <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
         <label>{this.props.lunch.l1.title}</label>
-          <img src={this.props.lunch.l1.image}></img>
+          <img src={this.props.lunch.l1.image} alt={this.props.lunch.l1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l1.summary}}></div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
           </div></div>
@@ -307,7 +304,7 @@ export default class Ingredientresults extends Component {
           <div id='options'>
           <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
         <label>{this.props.lunch.l1.title}</label>
-          <img src={this.props.lunch.l1.image}></img>
+          <img src={this.props.lunch.l1.image} alt={this.props.lunch.l1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l1.summary}}></div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
           </div>
@@ -315,7 +312,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}/>
           <label>{this.props.lunch.l2.title}</label>
-          <img src={this.props.lunch.l2.image}></img>
+          <img src={this.props.lunch.l2.image} alt={this.props.lunch.l2.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l2.summary}}></div>
           <a href={this.props.lunch.l2.source}>View Recipes</a>
         </div></div>
@@ -330,7 +327,7 @@ export default class Ingredientresults extends Component {
           <div id='options'>
           <input name="l1" type="checkbox" checked={this.state.l1} onChange={this.l1change}/>
         <label>{this.props.lunch.l1.title}</label>
-          <img src={this.props.lunch.l1.image}></img>
+          <img src={this.props.lunch.l1.image} alt={this.props.lunch.l1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l1.summary}}></div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
           </div>
@@ -338,7 +335,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="l2" type="checkbox" checked={this.state.l2} onChange={this.l2change}/>
           <label>{this.props.lunch.l2.title}</label>
-          <img src={this.props.lunch.l2.image}></img>
+          <img src={this.props.lunch.l2.image} alt={this.props.lunch.l2.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l2.summary}}></div>
           <a href={this.props.lunch.l2.source}>View Recipes</a>
         </div>
@@ -346,7 +343,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="l3" type="checkbox" checked={this.state.l3} onChange={this.l3change}/>
           <label>{this.props.lunch.l3.title}</label>
-          <img src={this.props.lunch.l3.image}></img>
+          <img src={this.props.lunch.l3.image} alt={this.props.lunch.l3.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l3.summary}}></div>
           <a href={this.props.lunch.l3.source}>View Recipes</a>
         </div>
@@ -367,7 +364,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
         <label>{this.props.dinner.d1.title}</label>
-          <img src={this.props.dinner.d1.image}></img>
+          <img src={this.props.dinner.d1.image} alt={this.props.dinner.d1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d1.summary}}></div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div></div>
@@ -380,7 +377,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
         <label>{this.props.dinner.d1.title}</label>
-          <img src={this.props.dinner.d1.image}></img>
+          <img src={this.props.dinner.d1.image} alt={this.props.dinner.d1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d1.summary}}></div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div>
@@ -388,7 +385,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
        <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}/>
           <label>{this.props.dinner.d2.title}</label>
-       <img src={this.props.dinner.d2.image}></img>
+       <img src={this.props.dinner.d2.image} alt={this.props.dinner.d2.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d2.summary}}></div>
           <a href={this.props.dinner.d2.source}>View Recipes</a>
         </div></div>
@@ -402,7 +399,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="d1" type="checkbox" checked={this.state.d1} onChange={this.d1change}/>
         <label>{this.props.dinner.d1.title}</label>
-          <img src={this.props.dinner.d1.image}></img>
+          <img src={this.props.dinner.d1.image} alt={this.props.dinner.d1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d1.summary}}></div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div>
@@ -410,7 +407,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
        <input name="d2" type="checkbox" checked={this.state.d2} onChange={this.d2change}/>
           <label>{this.props.dinner.d2.title}</label>
-       <img src={this.props.dinner.d2.image}></img>
+       <img src={this.props.dinner.d2.image} alt={this.props.dinner.d2.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d2.summary}}></div>
           <a href={this.props.dinner.d2.source}>View Recipes</a>
         </div>
@@ -418,7 +415,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="d3" type="checkbox" checked={this.state.d3} onChange={this.d3change}/>
           <label>{this.props.dinner.d3.title}</label>
-          <img src={this.props.dinner.d3.image}></img>
+          <img src={this.props.dinner.d3.image} alt={this.props.dinner.d3.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d3.summary}}></div>
           <a href={this.props.dinner.d3.source}>View Recipes</a>
         </div>
@@ -438,7 +435,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.c1change}/>
         <label>{this.props.breakfast.b1.title}</label>
-          <img src={this.props.breakfast.b1.image}></img>
+          <img src={this.props.breakfast.b1.image} alt={this.props.breakfast.b1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b1.summary}}></div>
           <a href={this.props.breakfast.b1.source}>View Recipes</a>
         </div>
@@ -451,7 +448,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.c2change}/>
         <label>{this.props.lunch.l1.title}</label>
-          <img src={this.props.lunch.l1.image}></img>
+          <img src={this.props.lunch.l1.image} alt={this.props.lunch.l1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l1.summary}}></div>
           <a href={this.props.lunch.l1.source}>View Recipes</a>
         </div>
@@ -464,7 +461,7 @@ export default class Ingredientresults extends Component {
         <div id='options'>
           <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.c3change}/>
         <label>{this.props.dinner.d1.title}</label>
-          <img src={this.props.dinner.d1.image}></img>
+          <img src={this.props.dinner.d1.image} alt={this.props.dinner.d1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d1.summary}}></div>
           <a href={this.props.dinner.d1.source}>View Recipes</a>
         </div>
