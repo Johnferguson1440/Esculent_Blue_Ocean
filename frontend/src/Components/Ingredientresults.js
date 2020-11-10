@@ -65,9 +65,8 @@ export default class Ingredientresults extends Component {
         body: JSON.stringify({name, date, breakfast, lunch, dinner})
       };
       fetch('/save', planSave)
-      .then((res) => { return res.json()})
-      .then((data) => {
-        console.log(data)
+      .then((res) => { 
+        console.log(res.json());
       })
     }
 

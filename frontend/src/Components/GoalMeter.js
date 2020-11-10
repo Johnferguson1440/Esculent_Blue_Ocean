@@ -18,13 +18,7 @@ export default class Goal extends Component {
       
     
     componentDidMount() {
-      fetch(this.api)
-        .then(res => res.json())
-        .then(seaCreatures => {
-         
-        });
     }
-    
 
     
 

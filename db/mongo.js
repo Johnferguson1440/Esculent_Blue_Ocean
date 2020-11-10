@@ -8,15 +8,15 @@ const { Schema } = mongoose;
          password: String,
          mealPlan:{
                  
-             date: {
+        //      date: {
                 
-                     breakfast: {},
-                     consumedB: Boolean,
-                     lunch: {},
-                     consumedL: Boolean,
-                     dinner: {},
-                     consumedD: Boolean,
-                },
+        //              breakfast: {},
+        //              consumedB: Boolean,
+        //              lunch: {},
+        //              consumedL: Boolean,
+        //              dinner: {},
+        //              consumedD: Boolean,
+        //         },
          },
     
  });

@@ -101,9 +101,9 @@ export default class PickIngredients extends Component {
 
           }else{
           //setstate to be passed down if user exist
-          this.setState({breakfast:data.breakfast});
-          this.setState({lunch: data.lunch});
-          this.setState({dinner:data.dinner})
+          this.setState({breakfast:data.mealPlan[date].breakfast});
+          this.setState({lunch: data.mealPlan[date].lunch});
+          this.setState({dinner:data.mealPlan[date].dinner})
           //call method from ingredient results to change states if user already has recipes for that date
           this.setState({results: "one"});
           this.setState({ingredientRender: "result"})

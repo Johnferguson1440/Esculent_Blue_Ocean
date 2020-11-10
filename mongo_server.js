@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Users = require("./db/mongo");
 const path = require("path");
 const PORT = 3001;
-mongoose.connect("mongodb://localhost/users", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/users", { useNewUrlParser: true }, { useFindAndModify: false });
 
 
 const app = express();
@@ -39,10 +39,12 @@ app.get("/api/login/:user/:pass", function(req, res) {
   app.post("/api/date", function(req,res){
     var date=req.body.date;
     var name=req.body.name;
+    var test= "data.mealPlan."+date;
 
     Users.findOne({name: new RegExp(name, 'i')})
     .then(function(data){
-        if(date=== data.date){
+      
+        if(data.mealPlan[date]){
             res.json(data)
         }else{
             res.json("No Recipe")
@@ -73,28 +75,37 @@ app.post("/signUp", (req,res)=>{
 
 app.post("/save", (req,res) => {
     let date =`${req.body.date}`;
-    db.updateUser(
-       `${req.body.name}`,
-        {
-            mealPlan:{
-                [date]: {
+    let query= {name: req.body.name};
+    let data= {
+        mealPlan:{
+            [date]: {
 
-                        breakfast: req.body.breakfast,
-                        bingredients: "",
-                        consumedB: Boolean,
-                        lunch: req.body.lunch,
-                        lingredients: "",
-                        consumedL: Boolean,
-                        dinner: req.body.dinner,
-                        dingredients: "",
-                        consumedD: {},
-                   },
-            }
+                    breakfast: req.body.breakfast,
+                    bingredients: "",
+                    consumedB: Boolean,
+                    lunch: req.body.lunch,
+                    lingredients: "",
+                    consumedL: Boolean,
+                    dinner: req.body.dinner,
+                    dingredients: "",
+                    consumedD: {},
+               },
         }
-        ).then((data) => {
-            console.log(data)
-        })
+    }
+   
+    Users.findOneAndUpdate(query, data, {new:true}, function(err,doc){
+        console.log(doc);
     })
+  
+    
+    // Users.findOneAndUpdate(query,data, {upsert: true}, function(err, doc) {
+    //     if (err){ return res.json(500, {error: err});
+    // }else{
+    //     return res.json('Succesfully saved.');
+    // }}
+       
+    // )
+});
 
 //get specific product by name
 
