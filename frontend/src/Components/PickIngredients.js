@@ -4,6 +4,7 @@ import {intoleranceItems, nutrientItems} from "./option"
 import Ingredientresults from "./Ingredientresults";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Goal from "./GoalMeter.js";
 
 
 
@@ -503,7 +504,7 @@ toggleAllergyd(e){
           
         </div>
       }else if(this.state.ingredientRender==="result"){
-        currentShow=<Ingredientresults date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
+        currentShow=<Ingredientresults btext = {this.state.textb}  ltext = {this.state.textl} dtext = {this.state.textd} date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
       }
       
 
@@ -520,7 +521,7 @@ toggleAllergyd(e){
         <div id={"ingredientrender"}>
           {currentShow}       
         </div>
-
+     
         </Fragment>
       );
     }

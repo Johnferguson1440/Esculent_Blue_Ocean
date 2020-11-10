@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 
-
+import PickIngredients from './PickIngredients';
 
 import Goal from "./GoalMeter.js";
 
@@ -468,7 +468,7 @@ export default class Ingredientresults extends Component {
         
 
       </div>
-        <Goal consumed={this.state.consumed} />
+      <Goal consumed={this.state.consumed} btext = {this.props.btext} ltext = {this.props.ltext} dtext= {this.props.dtext}/>
      
      </Fragment>
       }
@@ -480,8 +480,9 @@ export default class Ingredientresults extends Component {
           {resultb}
           {resultl}
           {resultd}
-         
           
+
+
         </div>
       );
     }
