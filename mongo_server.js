@@ -71,6 +71,31 @@ app.post("/signUp", (req,res)=>{
 //     res.sendFile(path.join(`${__dirname}/frontend/dist/bundle.js`))
 //   });
 
+app.post("/save", (req,res) => {
+    let date =`${req.body.date}`;
+    db.updateUser(
+       `${req.body.name}`,
+        {
+            mealPlan:{
+                [date]: {
+
+                        breakfast: req.body.breakfast,
+                        bingredients: "",
+                        consumedB: Boolean,
+                        lunch: req.body.lunch,
+                        lingredients: "",
+                        consumedL: Boolean,
+                        dinner: req.body.dinner,
+                        dingredients: "",
+                        consumedD: {},
+                   },
+            }
+        }
+        ).then((data) => {
+            console.log(data)
+        })
+    })
+
 //get specific product by name
 
   

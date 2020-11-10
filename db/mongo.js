@@ -7,16 +7,16 @@ const { Schema } = mongoose;
          name: String,
          password: String,
          mealPlan:{
+                 
              date: {
-                 type: Date,
-                 default: Date.now
+                
+                     breakfast: {},
+                     consumedB: Boolean,
+                     lunch: {},
+                     consumedL: Boolean,
+                     dinner: {},
+                     consumedD: Boolean,
                 },
-                breakfast: {},
-                 consumedB: Boolean,
-                 lunch: {},
-                 consumedL: Boolean,
-                 dinner: {},
-                 consumedD: {},
          },
     
  });

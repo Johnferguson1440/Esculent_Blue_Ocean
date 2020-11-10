@@ -51,12 +51,31 @@ export default class Ingredientresults extends Component {
       this.saveRecipe=this.saveRecipe.bind(this);
       
     }
-
     saveRecipe(){
       this.props.oneresult(this.state.breakfast, this.state.lunch, this.state.dinner);
       //need to make fetch post to store user data need this.props.name, this.props.date, this.state.breakfast, this.state.lunch, this.state.dinner
-
+      let name = this.props.name;
+      let date = this.props.date;
+      let breakfast = this.state.breakfast; 
+      let lunch = this.state.lunch;
+      let dinner = this.state.dinner;
+      const planSave ={
+        method:'Post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name, date, breakfast, lunch, dinner})
+      };
+      fetch('/save', planSave)
+      .then((res) => { return res.json()})
+      .then((data) => {
+        console.log(data)
+      })
     }
+
+    // saveRecipe(){
+    //   this.props.oneresult(this.state.breakfast, this.state.lunch, this.state.dinner);
+    //   //need to make fetch post to store user data need this.props.name, this.props.date, this.state.breakfast, this.state.lunch, this.state.dinner
+
+    // }
 
     userExist(){
       this.setState({breakfast:this.props.breakfast});
