@@ -43,7 +43,7 @@ export default class App extends Component {
   loginChange(){
     this.setState({login: !this.state.login})
   }
-
+com
   
 
   componentDidMount() {
