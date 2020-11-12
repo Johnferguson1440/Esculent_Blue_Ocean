@@ -43,7 +43,7 @@ app.get("/api/login/:user/:pass", function(req, res) {
 
     Users.findOne({name: new RegExp(name, 'i')})
     .then(function(data){
-       console.log(typeof data.mealPlan);
+       
        if(typeof data.mealPlan === 'undefined'){
            res.json("No Recipe");
        }
@@ -88,7 +88,21 @@ app.post("/signUp", (req,res)=>{
 app.post("/save", (req,res) => {
     let date =`${req.body.date}`;
     let query= {name: req.body.name};
-    let data= {
+    let newFav;
+    let newName;
+
+    Users.findOne({name: new RegExp(req.body.name, 'i')})
+    .then(function(data){ 
+        newFav= req.body.favoriteL
+        newName= req.body.favoriteN
+        let oldFav=data.favorite;
+
+        let fav;
+        fav= oldFav.push({name: newName,link: newFav,})
+    
+
+    let newData= {
+        favorite: fav,
         mealPlan:{
             [date]: {
 
@@ -101,13 +115,15 @@ app.post("/save", (req,res) => {
                     dinner: req.body.dinner,
                     dingredients: req.body.dtext,
                     consumedD: req.body.consumedD,
+                    consumed: req.body.consumed,
                },
         }
     }
    
-    Users.findOneAndUpdate(query, data, {new:true}, function(err,doc){
+    Users.findOneAndUpdate(query, newData, {new:true}, function(err,doc){
         
     })
+})
   
     
     // Users.findOneAndUpdate(query,data, {upsert: true}, function(err, doc) {
@@ -118,6 +134,9 @@ app.post("/save", (req,res) => {
        
     // )
 });
+
+//post to update C1 C2 C3
+
 
 //get specific product by name
 

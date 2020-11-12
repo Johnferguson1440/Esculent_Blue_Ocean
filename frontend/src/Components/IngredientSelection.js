@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component, Fragment} from 'react';
 
 import PickIngredients from "./PickIngredients"
 import "../App.css"
@@ -16,6 +16,7 @@ export default class IngredientSelection extends Component {
         name: null,
         pass: null,
         //date selected from calender 
+        favorite:"",
        
               
       };
@@ -25,9 +26,13 @@ export default class IngredientSelection extends Component {
       // this.api = `http://localhost:8000/api/example`;
     }
 
-    //method linked to event listener to update state.name from the username input box
-
-    //method to handle date change
+    //method that will make a get request to get all favs from the user logged in.
+    //var hrefstore as string 
+     //map through favorite array for each index item
+     //grab name and link returnvar newfav <a href=`${item.link}`>${item.name}</a>
+     //href=href+newfav
+     //after map function this.setstate({favorite:href})
+       
   
     
 
@@ -51,6 +56,7 @@ export default class IngredientSelection extends Component {
                 self.setState({name: self.props.user});
                 self.setState({pass: self.props.pass}); 
                 self.props.loginChange();
+                //call method above to grab favs and input data
                
                 self.props.blank();
             }else{
@@ -97,6 +103,7 @@ export default class IngredientSelection extends Component {
 
       
       return (
+        <Fragment>
         <div id={"ingredients"}>
         <div id={"plan"}>
         <h1>{this.state.name} DAILY NUTRITION PLAN</h1>        
@@ -110,6 +117,8 @@ export default class IngredientSelection extends Component {
          
           
         </div>
+        <div id={'favorites'} dangerouslySetInnerHTML={{__html:this.state.favorite}}></div>
+        </Fragment>
       );
     }
   }
