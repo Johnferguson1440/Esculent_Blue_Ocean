@@ -4,7 +4,7 @@ import {intoleranceItems, nutrientItems} from "./option"
 import Ingredientresults from "./Ingredientresults";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Goal from "./GoalMeter.js";
+
 
 
 
@@ -168,14 +168,14 @@ export default class PickIngredients extends Component {
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
       let favN;
-      let favL
+      let favL;
       //conditional if alert user says yes
       //favN=this.state.breakfast.b1.title;
       //favL=this.state.breakfast.b1.source;
 
       //else 
-      //favN=""
-      //favL= ""
+      //favN="";
+      //favL= "";
       
 
       if(breakCon === true & lunchCon===true & dinnerCon===true){

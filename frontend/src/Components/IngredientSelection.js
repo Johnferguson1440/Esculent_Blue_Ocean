@@ -21,17 +21,41 @@ export default class IngredientSelection extends Component {
               
       };
       
-     
+     this.userFav=this.userFav.bind(this);
    
       // this.api = `http://localhost:8000/api/example`;
     }
 
+
     //method that will make a get request to get all favs from the user logged in.
-    //var hrefstore as string 
-     //map through favorite array for each index item
-     //grab name and link returnvar newfav <a href=`${item.link}`>${item.name}</a>
-     //href=href+newfav
-     //after map function this.setstate({favorite:href})
+    userFav(){
+      //var hrefstore as string 
+      var atags="";
+      var name=this.state.name
+      fetch("/fav/"+name)
+      .then((res)=>{
+        return res.json();})
+      .then((data)=>{
+        //map through favorite array for each index item
+        data.favorite.map(item=>{
+          //grab name and link returnvar newfav <a href=`${item.link}`>${item.name}</a>
+          atags= atags+`<a href=${item.link}>${item.name}</a>`;
+          //href=href+newfav
+          
+          
+          
+          
+        })
+        //after map function this.setstate({favorite:href})
+        this.setState({favorite: atags});
+
+
+
+      })
+
+
+
+    }
        
   
     
