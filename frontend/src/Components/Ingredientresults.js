@@ -60,7 +60,7 @@ export default class Ingredientresults extends Component {
       let consumedL= this.props.c2;
       let consumedD= this.props.c3;
       let consumed= this.props.consumed
-      console.log(consumedD);
+      
 
 
       const planSave ={

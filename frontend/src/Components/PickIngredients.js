@@ -67,7 +67,8 @@ export default class PickIngredients extends Component {
       this.myfunction=this.myfunction.bind(this);
       this.c1change= this.c1change.bind(this);
       this.c2change= this.c2change.bind(this);
-      this.c3change= this.c3change.bind(this);    
+      this.c3change= this.c3change.bind(this);  
+      this.updateMeals=this.updateMeals.bind(this);  
       
       
     }
@@ -112,6 +113,12 @@ export default class PickIngredients extends Component {
           this.setState({breakfast:data.mealPlan[datePicked].breakfast});
           this.setState({lunch: data.mealPlan[datePicked].lunch});
           this.setState({dinner:data.mealPlan[datePicked].dinner})
+          this.setState({btext: data.mealPlan[datePicked].bingredients});
+          this.setState({ltext:data.mealPlan[datePicked].lingredients});
+          this.setState({dtext:data.mealPlan[datePicked].dingredients});
+          this.setState({consumedB:data.mealPlan[datePicked].consumedB});
+          this.setState({consumedL:data.mealPlan[datePicked].consumedL});
+          this.setState({consumedD:data.mealPlan[datePicked].consumedD});
           //call method from ingredient results to change states if user already has recipes for that date
           this.setState({results: "one"});
           this.setState({ingredientRender: "result"})
@@ -121,21 +128,73 @@ export default class PickIngredients extends Component {
 
     }  
 
+    updateMeals(favN,favL){
+      let name = this.props.name;
+      let date = this.state.selectedDate;
+      let breakfast = this.state.breakfast; 
+      let lunch = this.state.lunch;
+      let dinner = this.state.dinner;
+      let btext= this.state.btext;
+      let ltext= this.state.ltext;
+      let dtext= this.state.dtext;
+      let consumedB=this.state.c1;
+      let consumedL= this.state.c2;
+      let consumedD= this.state.c3;
+      let consumed= this.state.consumed
+      let favoriteL= favL
+      let favoriteN=favN
+      
+      
+
+
+      const planSave ={
+        method:'Post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name, date, favoriteN, favoriteL,breakfast, lunch, dinner,btext,ltext,dtext,consumedB,consumedL,consumedD,consumed})
+      };
+      fetch('/save', planSave)
+      .then((res) => { 
+        //call method from ingredient selection to make get request for favorites
+        console.log(res.json());
+      })
+    
+
+    }
+
+
     c1change(){
       this.setState({c1: !this.state.c1},()=>{
-        let breakCon= this.state.c1;
+      let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
+      let favN;
+      let favL
+      //conditional if alert user says yes
+      //favN=this.state.breakfast.b1.title;
+      //favL=this.state.breakfast.b1.source;
+
+      //else 
+      //favN=""
+      //favL= ""
+      
 
       if(breakCon === true & lunchCon===true & dinnerCon===true){
         this.setState({consumed: 100});
+        this.updateMeals(favN,favL);
       }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
         this.setState({consumed: 66});
+        this.updateMeals(favN,favL);
       }else if(breakCon===true || lunchCon===true || dinnerCon===true){
         this.setState({consumed: 33});
+        this.updateMeals(favN,favL);
       }else{
         this.setState({consumed: 0});
+        this.updateMeals(favN,favL);
       }
+
+
+
+
       })
     }
     c2change(){
@@ -143,16 +202,33 @@ export default class PickIngredients extends Component {
         let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
+      let favN;
+      let favL;
+      
+      //conditional if alert user says yes
+      //favN=this.state.lunch.l1.title+",";
+      //favL=this.state.lunch.l1.source+",";
+      //else 
+      //favN=""
+      //favL= ""
 
+      
       if(breakCon === true & lunchCon===true & dinnerCon===true){
         this.setState({consumed: 100});
+        this.updateMeals(favN,favL);
       }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
         this.setState({consumed: 66});
+        this.updateMeals(favN,favL);
       }else if(breakCon===true || lunchCon===true || dinnerCon===true){
         this.setState({consumed: 33});
+        this.updateMeals(favN,favL);
       }else{
         this.setState({consumed: 0});
+        this.updateMeals(favN,favL);
       }
+
+      
+
       })
     }
     c3change(){
@@ -160,16 +236,33 @@ export default class PickIngredients extends Component {
         let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
+      let favN;
+      let favL;
 
+
+      //conditional if alert user says yes
+      //favN=this.state.dinner.d1.title;
+      //favL=this.state.dinner.d1.source;
+      //else 
+      //favN="";
+      //favL="";
+      
       if(breakCon === true & lunchCon===true & dinnerCon===true){
         this.setState({consumed: 100});
+        this.updateMeals(favN,favL);
       }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
         this.setState({consumed: 66});
+        this.updateMeals(favN,favL);
       }else if(breakCon===true || lunchCon===true || dinnerCon===true){
         this.setState({consumed: 33});
+        this.updateMeals(favN,favL);
       }else{
         this.setState({consumed: 0});
+        this.updateMeals(favN,favL);
       }
+      
+
+
       })
     }
 
