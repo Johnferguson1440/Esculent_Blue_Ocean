@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 
-import PickIngredients from './PickIngredients';
+
 
 import Goal from "./GoalMeter.js";
 
@@ -28,16 +28,10 @@ export default class Ingredientresults extends Component {
         d3: false,
         //state to change render between three options and one
         
-        //increases and decreses when consumed boxes are checked and unchecked
-        c1: false,
-        c2:false,
-        c3: false,
-        consumed: 0,
+        
         
       };
-      this.c1change= this.c1change.bind(this);
-      this.c2change= this.c2change.bind(this);
-      this.c3change= this.c3change.bind(this);
+      
 
       this.b1change= this.b1change.bind(this);
       this.b2change= this.b2change.bind(this);
@@ -59,10 +53,20 @@ export default class Ingredientresults extends Component {
       let breakfast = this.state.breakfast; 
       let lunch = this.state.lunch;
       let dinner = this.state.dinner;
+      let btext= this.props.btext;
+      let ltext= this.props.ltext;
+      let dtext= this.props.dtext;
+      let consumedB=this.props.c1;
+      let consumedL= this.props.c2;
+      let consumedD= this.props.c3;
+      let consumed= this.props.consumed
+      console.log(consumedD);
+
+
       const planSave ={
         method:'Post',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({name, date, breakfast, lunch, dinner})
+        body: JSON.stringify({name, date, breakfast, lunch, dinner,btext,ltext,dtext,consumedB,consumedL,consumedD,consumed})
       };
       fetch('/save', planSave)
       .then((res) => { 
@@ -83,57 +87,7 @@ export default class Ingredientresults extends Component {
       this.setState({results:"one"});
     }
     
-    c1change(){
-      this.setState({c1: !this.state.c1},()=>{
-        let breakCon= this.state.c1;
-      let lunchCon=this.state.c2;
-      let dinnerCon=this.state.c3;
-
-      if(breakCon === true & lunchCon===true & dinnerCon===true){
-        this.setState({consumed: 100});
-      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
-        this.setState({consumed: 66});
-      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
-        this.setState({consumed: 33});
-      }else{
-        this.setState({consumed: 0});
-      }
-      })
-    }
-    c2change(){
-      this.setState({c2: !this.state.c2},()=>{
-        let breakCon= this.state.c1;
-      let lunchCon=this.state.c2;
-      let dinnerCon=this.state.c3;
-
-      if(breakCon === true & lunchCon===true & dinnerCon===true){
-        this.setState({consumed: 100});
-      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
-        this.setState({consumed: 66});
-      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
-        this.setState({consumed: 33});
-      }else{
-        this.setState({consumed: 0});
-      }
-      })
-    }
-    c3change(){
-      this.setState({c3: !this.state.c3},()=>{
-        let breakCon= this.state.c1;
-      let lunchCon=this.state.c2;
-      let dinnerCon=this.state.c3;
-
-      if(breakCon === true & lunchCon===true & dinnerCon===true){
-        this.setState({consumed: 100});
-      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
-        this.setState({consumed: 66});
-      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
-        this.setState({consumed: 33});
-      }else{
-        this.setState({consumed: 0});
-      }
-      })
-    }
+   
 
 
 
@@ -451,7 +405,7 @@ export default class Ingredientresults extends Component {
         <h1>BREAKFAST</h1>
         
         <div id='options'>
-          <input name="c1" type="checkbox" checked={this.state.c1} onChange={this.c1change}/>
+          <input name="c1" type="checkbox" checked={this.props.c1} onChange={this.props.c1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image} alt={this.props.breakfast.b1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.breakfast.b1.summary}}></div>
@@ -464,7 +418,7 @@ export default class Ingredientresults extends Component {
         <h1>LUNCH</h1>
 
         <div id='options'>
-          <input name="c2" type="checkbox" checked={this.state.c2} onChange={this.c2change}/>
+          <input name="c2" type="checkbox" checked={this.props.c2} onChange={this.props.c2change}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image} alt={this.props.lunch.l1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.lunch.l1.summary}}></div>
@@ -477,7 +431,7 @@ export default class Ingredientresults extends Component {
         <h1>DINNER</h1>
         
         <div id='options'>
-          <input name="c3" type="checkbox" checked={this.state.c3} onChange={this.c3change}/>
+        <input name="c3" type="checkbox" checked={this.props.c3} onChange={this.props.c3change}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image} alt={this.props.dinner.d1.title}></img>
           <div dangerouslySetInnerHTML={{__html:this.props.dinner.d1.summary}}></div>
@@ -486,7 +440,7 @@ export default class Ingredientresults extends Component {
         
 
       </div>
-      <Goal consumed={this.state.consumed} btext = {this.props.btext} ltext = {this.props.ltext} dtext= {this.props.dtext}/>
+      <Goal consumed={this.props.consumed} btext = {this.props.btext} ltext = {this.props.ltext} dtext= {this.props.dtext}/>
      
      </Fragment>
       }

@@ -48,6 +48,11 @@ export default class PickIngredients extends Component {
         // },
         ingredientRender: "",
         results: "",
+
+        c1: false,
+        c2:false,
+        c3: false,
+        consumed: 0,
        
 
       };
@@ -60,7 +65,9 @@ export default class PickIngredients extends Component {
       this.toggleCheckboxChanged= this.toggleCheckboxChanged.bind(this);
       this.oneResult=this.oneResult.bind(this);
       this.myfunction=this.myfunction.bind(this);
-     
+      this.c1change= this.c1change.bind(this);
+      this.c2change= this.c2change.bind(this);
+      this.c3change= this.c3change.bind(this);    
       
       
     }
@@ -81,12 +88,13 @@ export default class PickIngredients extends Component {
         
         
         
-        var date =this.state.selectedDate;
+        var datePicked =this.state.selectedDate;
+        console.log(datePicked);
         var name=this.props.name
         const options={
           method:'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({date,name})
+          body: JSON.stringify({datePicked,name})
         };
 
 
@@ -101,22 +109,70 @@ export default class PickIngredients extends Component {
 
           }else{
           //setstate to be passed down if user exist
-          this.setState({breakfast:data.mealPlan[date].breakfast});
-          this.setState({lunch: data.mealPlan[date].lunch});
-          this.setState({dinner:data.mealPlan[date].dinner})
+          this.setState({breakfast:data.mealPlan[datePicked].breakfast});
+          this.setState({lunch: data.mealPlan[datePicked].lunch});
+          this.setState({dinner:data.mealPlan[datePicked].dinner})
           //call method from ingredient results to change states if user already has recipes for that date
           this.setState({results: "one"});
           this.setState({ingredientRender: "result"})
           }
         })
-      });
-
-
-
-
-      
+      });      
 
     }  
+
+    c1change(){
+      this.setState({c1: !this.state.c1},()=>{
+        let breakCon= this.state.c1;
+      let lunchCon=this.state.c2;
+      let dinnerCon=this.state.c3;
+
+      if(breakCon === true & lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 100});
+      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 66});
+      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
+        this.setState({consumed: 33});
+      }else{
+        this.setState({consumed: 0});
+      }
+      })
+    }
+    c2change(){
+      this.setState({c2: !this.state.c2},()=>{
+        let breakCon= this.state.c1;
+      let lunchCon=this.state.c2;
+      let dinnerCon=this.state.c3;
+
+      if(breakCon === true & lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 100});
+      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 66});
+      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
+        this.setState({consumed: 33});
+      }else{
+        this.setState({consumed: 0});
+      }
+      })
+    }
+    c3change(){
+      this.setState({c3: !this.state.c3},()=>{
+        let breakCon= this.state.c1;
+      let lunchCon=this.state.c2;
+      let dinnerCon=this.state.c3;
+
+      if(breakCon === true & lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 100});
+      }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
+        this.setState({consumed: 66});
+      }else if(breakCon===true || lunchCon===true || dinnerCon===true){
+        this.setState({consumed: 33});
+      }else{
+        this.setState({consumed: 0});
+      }
+      })
+    }
+
 
     //adds the clicked item to the state checked boxes and adds true or false for checked or not breakfast
     toggleCheckboxChangeb(e){
@@ -504,7 +560,7 @@ toggleAllergyd(e){
           
         </div>
       }else if(this.state.ingredientRender==="result"){
-        currentShow=<Ingredientresults btext = {this.state.textb}  ltext = {this.state.textl} dtext = {this.state.textd} date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
+        currentShow=<Ingredientresults consumed={this.state.consumed} c1={this.state.c1} c2={this.state.c2} c3={this.state.c3} c1change={this.c1change} c2change={this.c2change} c3change={this.c3change} btext = {this.state.textb}  ltext = {this.state.textl} dtext = {this.state.textd} date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
       }
       
 

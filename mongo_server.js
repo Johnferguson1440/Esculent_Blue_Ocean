@@ -37,17 +37,23 @@ app.get("/api/login/:user/:pass", function(req, res) {
 
   //get request to user based on date selected.
   app.post("/api/date", function(req,res){
-    var date=req.body.date;
+    var date=req.body.datePicked;
     var name=req.body.name;
-    var test= "data.mealPlan."+date;
+    
 
     Users.findOne({name: new RegExp(name, 'i')})
     .then(function(data){
-      
-        if(data.mealPlan[date]){
-            res.json(data)
-        }else{
+       console.log(typeof data.mealPlan);
+       if(typeof data.mealPlan === 'undefined'){
+           res.json("No Recipe");
+       }
+        else if(typeof data.mealPlan[date] === 'undefined'){
             res.json("No Recipe")
+            
+        }else{
+            console.log(data);
+            res.json(data);
+            
         }
         
     })
@@ -57,8 +63,14 @@ app.get("/api/login/:user/:pass", function(req, res) {
 
 //post new entry into users new user
 app.post("/signUp", (req,res)=>{
+
+    var newUser= {
+        name:req.body.name,
+        password:req.body.password,
+        mealPlan:{}
+    }
     console.log("in post request");
-    Users.create(req.body)
+    Users.create(newUser)
     .then(function(data){
        
         res.json("User Created");
@@ -81,20 +93,20 @@ app.post("/save", (req,res) => {
             [date]: {
 
                     breakfast: req.body.breakfast,
-                    bingredients: "",
-                    consumedB: Boolean,
+                    bingredients: req.body.btext,
+                    consumedB: req.body.consumedB,
                     lunch: req.body.lunch,
-                    lingredients: "",
-                    consumedL: Boolean,
+                    lingredients: req.body.ltext,
+                    consumedL: req.body.consumedL,
                     dinner: req.body.dinner,
-                    dingredients: "",
-                    consumedD: {},
+                    dingredients: req.body.dtext,
+                    consumedD: req.body.consumedD,
                },
         }
     }
    
     Users.findOneAndUpdate(query, data, {new:true}, function(err,doc){
-        console.log(doc);
+        
     })
   
     
