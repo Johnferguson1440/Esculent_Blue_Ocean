@@ -377,7 +377,7 @@ toggleAllergyd(e){
         for (var n = 0; n < bnut.length; n++) {
           breakfastNutrient = breakfastNutrient + 'min' + bnut[n] + '=10&';
         }
-        var bApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&query=${self.state.textb}&${breakfastNutrient}intolerances=${breakfastAllergy.slice(0,-1)}`
+        var bApi = `https://api.spoonacular.com/recipes/complexSearch?apiKey=dedf920bfe67493f94ff2565a7847e9c&number=3&instructionsRequired=true&addRecipeInformation=true&type=breakfast&query=${self.state.textb}&${breakfastNutrient}intolerances=${breakfastAllergy.slice(0,-1)}`
         
         // allergy for lunch
           let lal = [];
