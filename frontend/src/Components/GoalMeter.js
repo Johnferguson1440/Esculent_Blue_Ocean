@@ -1,10 +1,10 @@
 
-import React, { Component, Fragment } from 'react';
-import {ProgressBar, Button} from 'react-bootstrap';
+import React, { Component} from 'react';
+import {ProgressBar} from 'react-bootstrap';
 // import ReactBootstrapStyle from 'react-bootstrap';
 // import ProgressBar from '@bit/react-bootstrap.react-bootstrap.progress-bar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PickIngredients from './PickIngredients';
+
 
 export default class Goal extends Component {
     constructor(props) {

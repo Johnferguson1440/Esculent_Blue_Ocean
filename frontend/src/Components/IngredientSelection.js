@@ -30,16 +30,22 @@ export default class IngredientSelection extends Component {
     //method that will make a get request to get all favs from the user logged in.
     userFav(){
       //var hrefstore as string 
-      var atags="";
+      console.log("made");
+      var atags="FAVORITES";
       var name=this.state.name
       fetch("/fav/"+name)
       .then((res)=>{
         return res.json();})
       .then((data)=>{
+       if(data.favorite.length <1){
+          console.log("made2")
+        }else{
+          console.log(data.favorite);
         //map through favorite array for each index item
         data.favorite.map(item=>{
+          console.log(item)
           //grab name and link returnvar newfav <a href=`${item.link}`>${item.name}</a>
-          atags= atags+`<a href=${item.link}>${item.name}</a>`;
+          atags= atags+`<div><a href=${item.link}>${item.name}</a></div>`;
           //href=href+newfav
           
           
@@ -50,7 +56,7 @@ export default class IngredientSelection extends Component {
         this.setState({favorite: atags});
 
 
-
+      }
       })
 
 
@@ -133,7 +139,7 @@ export default class IngredientSelection extends Component {
         <h1>{this.state.name} DAILY NUTRITION PLAN</h1>        
                  
         </div>  
-        <PickIngredients  login={this.props.login} name={this.state.name} />
+        <PickIngredients favorite={this.userFav} login={this.props.login} name={this.state.name} />
         
      
        

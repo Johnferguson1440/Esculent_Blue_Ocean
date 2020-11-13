@@ -61,6 +61,18 @@ app.get("/api/login/:user/:pass", function(req, res) {
   })
 
 
+//Favorites
+app.get("/fav/:user", function(req, res) {
+    var name = req.params.user;
+    
+    
+    Users.findOne({name: new RegExp(name, 'i')})
+    .then(function(data){ 
+       res.json(data);
+  });
+});
+
+
 //post new entry into users new user
 app.post("/signUp", (req,res)=>{
 
@@ -88,41 +100,61 @@ app.post("/signUp", (req,res)=>{
 app.post("/save", (req,res) => {
     let date =`${req.body.date}`;
     let query= {name: req.body.name};
-    let newFav;
-    let newName;
+   
 
     Users.findOne({name: new RegExp(req.body.name, 'i')})
     .then(function(data){ 
-        newFav= req.body.favoriteL
-        newName= req.body.favoriteN
-        let oldFav=data.favorite;
+        let newFav= req.body.favoriteL
+        let newName= req.body.favoriteN
+        
+        console.log(newName);
+       
+        let fav=data.favorite
+        console.log(data.favorite);
+        if(data.favorite.length < 1){
+            if(typeof newName ==="undefined"){
+                
+                console.log("hi1");
+            }else{
+           fav.push({'name': newName,'link': newFav,});
+           console.log("hi2");
+           
+           
+            }
+        }else{
+            
+           
+            fav.push({'name': newName,'link': newFav,});
+   
+            console.log("hi3")
 
-        let fav;
-        fav= oldFav.push({name: newName,link: newFav,})
+        }
+        console.log(data.favorite);
+        let newData= {
+            favorite: fav,
+            mealPlan:{
+                [date]: {
+    
+                        breakfast: req.body.breakfast,
+                        bingredients: req.body.btext,
+                        consumedB: req.body.consumedB,
+                        lunch: req.body.lunch,
+                        lingredients: req.body.ltext,
+                        consumedL: req.body.consumedL,
+                        dinner: req.body.dinner,
+                        dingredients: req.body.dtext,
+                        consumedD: req.body.consumedD,
+                        consumed: req.body.consumed,
+                   },
+            }
+        }
+       
+        Users.findOneAndUpdate(query, newData, {new:true}, function(err,doc){
+            console.log(doc);
+        })
     
 
-    let newData= {
-        favorite: fav,
-        mealPlan:{
-            [date]: {
-
-                    breakfast: req.body.breakfast,
-                    bingredients: req.body.btext,
-                    consumedB: req.body.consumedB,
-                    lunch: req.body.lunch,
-                    lingredients: req.body.ltext,
-                    consumedL: req.body.consumedL,
-                    dinner: req.body.dinner,
-                    dingredients: req.body.dtext,
-                    consumedD: req.body.consumedD,
-                    consumed: req.body.consumed,
-               },
-        }
-    }
-   
-    Users.findOneAndUpdate(query, newData, {new:true}, function(err,doc){
-        
-    })
+    
 })
   
     

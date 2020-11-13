@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 
-
+import HeartCheckbox from 'react-heart-checkbox';
 
 import Goal from "./GoalMeter.js";
 
@@ -26,7 +26,9 @@ export default class Ingredientresults extends Component {
         d1: false,
         d2: false,
         d3: false,
-        //state to change render between three options and one
+        fb:false,
+        fl:false,
+        fd:false,
         
         
         
@@ -43,6 +45,9 @@ export default class Ingredientresults extends Component {
       this.d2change= this.d2change.bind(this);
       this.d3change= this.d3change.bind(this);
       this.saveRecipe=this.saveRecipe.bind(this);
+      this.favB=this.favB.bind(this);
+      this.favL=this.favL.bind(this);
+      this.favD=this.favD.bind(this);
       
     }
     saveRecipe(){
@@ -60,13 +65,15 @@ export default class Ingredientresults extends Component {
       let consumedL= this.props.c2;
       let consumedD= this.props.c3;
       let consumed= this.props.consumed
+      let favoriteL;
+      let favoriteN;
       
 
 
       const planSave ={
         method:'Post',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({name, date, breakfast, lunch, dinner,btext,ltext,dtext,consumedB,consumedL,consumedD,consumed})
+        body: JSON.stringify({name, date, favoriteL,favoriteN,breakfast, lunch, dinner,btext,ltext,dtext,consumedB,consumedL,consumedD,consumed})
       };
       fetch('/save', planSave)
       .then((res) => { 
@@ -79,6 +86,32 @@ export default class Ingredientresults extends Component {
     //   //need to make fetch post to store user data need this.props.name, this.props.date, this.state.breakfast, this.state.lunch, this.state.dinner
 
     // }
+    favB(){
+      this.setState({fb:!this.state.fb})
+      if(this.state.fb === true){
+      let favN=this.props.breakfast.b1.title;
+      let favL=this.props.breakfast.b1.source;
+      this.props.updateMeals(favN,favL);
+      }
+      
+
+    }
+    favL(){
+      this.setState({fl:!this.state.fl})
+      if(this.state.fl===true){
+      let favN=this.props.lunch.l1.title;
+      let favL=this.props.lunch.l1.source;
+      this.props.updateMeals(favN,favL);
+    }
+    }
+    favD(){
+      this.setState({fd:!this.state.fd})
+      if(this.state.fd===true){
+      let favN=this.props.dinner.d1.title;
+      let favL=this.props.dinner.d1.source;
+      this.props.updateMeals(favN,favL);
+      }
+    }
 
     userExist(){
       this.setState({breakfast:this.props.breakfast});
@@ -181,6 +214,14 @@ export default class Ingredientresults extends Component {
       var resultb;
       var resultl;
       var resultd;
+      var heart1;
+      var heart2;
+      var heart3;
+      // if(this.state.fb=== "true"){
+      //   heart1= <button class="heart-checkbox" type="button" onClick={this.favB} />
+      // }else{
+      //   heart1= <button class="heart-checkbox1" type="button" onClick={this.favB} />
+      // }
       if(this.props.result === "many"){
       
             if(this.props.breakfast === null) {
@@ -405,6 +446,7 @@ export default class Ingredientresults extends Component {
         <h1>BREAKFAST</h1>
         
         <div id='options'>
+        <HeartCheckbox id={"fav"} checked={this.state.fb} onClick={this.favB} />
           <input name="c1" type="checkbox" checked={this.props.c1} onChange={this.props.c1change}/>
         <label>{this.props.breakfast.b1.title}</label>
           <img src={this.props.breakfast.b1.image} alt={this.props.breakfast.b1.title}></img>
@@ -418,6 +460,7 @@ export default class Ingredientresults extends Component {
         <h1>LUNCH</h1>
 
         <div id='options'>
+        <HeartCheckbox checked={this.state.fl} onClick={this.favL} />
           <input name="c2" type="checkbox" checked={this.props.c2} onChange={this.props.c2change}/>
         <label>{this.props.lunch.l1.title}</label>
           <img src={this.props.lunch.l1.image} alt={this.props.lunch.l1.title}></img>
@@ -431,6 +474,7 @@ export default class Ingredientresults extends Component {
         <h1>DINNER</h1>
         
         <div id='options'>
+        <HeartCheckbox checked={this.state.fd} onClick={this.favD} />
         <input name="c3" type="checkbox" checked={this.props.c3} onChange={this.props.c3change}/>
         <label>{this.props.dinner.d1.title}</label>
           <img src={this.props.dinner.d1.image} alt={this.props.dinner.d1.title}></img>

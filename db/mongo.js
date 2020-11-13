@@ -6,6 +6,7 @@ const { Schema } = mongoose;
     
          name: String,
          password: String,
+         favorite:[],
          mealPlan:{
                  
         //      date: {

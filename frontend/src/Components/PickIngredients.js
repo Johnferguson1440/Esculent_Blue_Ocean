@@ -113,15 +113,16 @@ export default class PickIngredients extends Component {
           this.setState({breakfast:data.mealPlan[datePicked].breakfast});
           this.setState({lunch: data.mealPlan[datePicked].lunch});
           this.setState({dinner:data.mealPlan[datePicked].dinner})
-          this.setState({btext: data.mealPlan[datePicked].bingredients});
-          this.setState({ltext:data.mealPlan[datePicked].lingredients});
-          this.setState({dtext:data.mealPlan[datePicked].dingredients});
+          this.setState({textb: data.mealPlan[datePicked].bingredients});
+          this.setState({textl:data.mealPlan[datePicked].lingredients});
+          this.setState({textd:data.mealPlan[datePicked].dingredients});
           this.setState({consumedB:data.mealPlan[datePicked].consumedB});
           this.setState({consumedL:data.mealPlan[datePicked].consumedL});
           this.setState({consumedD:data.mealPlan[datePicked].consumedD});
           //call method from ingredient results to change states if user already has recipes for that date
           this.setState({results: "one"});
-          this.setState({ingredientRender: "result"})
+          this.setState({ingredientRender: "result"});
+          this.props.favorite();
           }
         })
       });      
@@ -134,15 +135,16 @@ export default class PickIngredients extends Component {
       let breakfast = this.state.breakfast; 
       let lunch = this.state.lunch;
       let dinner = this.state.dinner;
-      let btext= this.state.btext;
-      let ltext= this.state.ltext;
-      let dtext= this.state.dtext;
+      let btext= this.state.textb;
+      let ltext= this.state.textl;
+      let dtext= this.state.textd;
       let consumedB=this.state.c1;
       let consumedL= this.state.c2;
       let consumedD= this.state.c3;
       let consumed= this.state.consumed
       let favoriteL= favL
       let favoriteN=favN
+      
       
       
 
@@ -153,11 +155,14 @@ export default class PickIngredients extends Component {
         body: JSON.stringify({name, date, favoriteN, favoriteL,breakfast, lunch, dinner,btext,ltext,dtext,consumedB,consumedL,consumedD,consumed})
       };
       fetch('/save', planSave)
-      .then((res) => { 
+      .then(
+        this.props.favorite()
+        
+       
         //call method from ingredient selection to make get request for favorites
-        console.log(res.json());
-      })
-    
+      )
+      
+      
 
     }
 
@@ -167,8 +172,7 @@ export default class PickIngredients extends Component {
       let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
-      let favN;
-      let favL;
+     
       //conditional if alert user says yes
       //favN=this.state.breakfast.b1.title;
       //favL=this.state.breakfast.b1.source;
@@ -180,16 +184,16 @@ export default class PickIngredients extends Component {
 
       if(breakCon === true & lunchCon===true & dinnerCon===true){
         this.setState({consumed: 100});
-        this.updateMeals(favN,favL);
+       
       }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
         this.setState({consumed: 66});
-        this.updateMeals(favN,favL);
+       
       }else if(breakCon===true || lunchCon===true || dinnerCon===true){
         this.setState({consumed: 33});
-        this.updateMeals(favN,favL);
+        
       }else{
         this.setState({consumed: 0});
-        this.updateMeals(favN,favL);
+        
       }
 
 
@@ -202,8 +206,7 @@ export default class PickIngredients extends Component {
         let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
-      let favN;
-      let favL;
+      
       
       //conditional if alert user says yes
       //favN=this.state.lunch.l1.title+",";
@@ -215,16 +218,16 @@ export default class PickIngredients extends Component {
       
       if(breakCon === true & lunchCon===true & dinnerCon===true){
         this.setState({consumed: 100});
-        this.updateMeals(favN,favL);
+        
       }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
         this.setState({consumed: 66});
-        this.updateMeals(favN,favL);
+       
       }else if(breakCon===true || lunchCon===true || dinnerCon===true){
         this.setState({consumed: 33});
-        this.updateMeals(favN,favL);
+        
       }else{
         this.setState({consumed: 0});
-        this.updateMeals(favN,favL);
+        
       }
 
       
@@ -236,8 +239,7 @@ export default class PickIngredients extends Component {
         let breakCon= this.state.c1;
       let lunchCon=this.state.c2;
       let dinnerCon=this.state.c3;
-      let favN;
-      let favL;
+      
 
 
       //conditional if alert user says yes
@@ -249,16 +251,16 @@ export default class PickIngredients extends Component {
       
       if(breakCon === true & lunchCon===true & dinnerCon===true){
         this.setState({consumed: 100});
-        this.updateMeals(favN,favL);
+        
       }else if(breakCon===true & lunchCon===true || breakCon===true & dinnerCon===true || lunchCon===true & dinnerCon===true){
         this.setState({consumed: 66});
-        this.updateMeals(favN,favL);
+        
       }else if(breakCon===true || lunchCon===true || dinnerCon===true){
         this.setState({consumed: 33});
-        this.updateMeals(favN,favL);
+       
       }else{
         this.setState({consumed: 0});
-        this.updateMeals(favN,favL);
+        
       }
       
 
@@ -653,7 +655,7 @@ toggleAllergyd(e){
           
         </div>
       }else if(this.state.ingredientRender==="result"){
-        currentShow=<Ingredientresults consumed={this.state.consumed} c1={this.state.c1} c2={this.state.c2} c3={this.state.c3} c1change={this.c1change} c2change={this.c2change} c3change={this.c3change} btext = {this.state.textb}  ltext = {this.state.textl} dtext = {this.state.textd} date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
+        currentShow=<Ingredientresults updateMeals={this.updateMeals} consumed={this.state.consumed} c1={this.state.c1} c2={this.state.c2} c3={this.state.c3} c1change={this.c1change} c2change={this.c2change} c3change={this.c3change} btext = {this.state.textb}  ltext = {this.state.textl} dtext = {this.state.textd} date={this.state.selectedDate} name={this.props.name} oneresult={this.oneResult} result={this.state.results} breakfast={this.state.breakfast} lunch={this.state.lunch} dinner={this.state.dinner} />
       }
       
 
