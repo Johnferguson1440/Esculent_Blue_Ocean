@@ -109,27 +109,44 @@ app.post("/save", (req,res) => {
         
         console.log(newName);
        
-        let fav=data.favorite
-        console.log(data.favorite);
+        let fav=[];
+        console.log(data.favorite.length);
         if(data.favorite.length < 1){
             if(typeof newName ==="undefined"){
                 
                 console.log("hi1");
             }else{
+                
            fav.push({'name': newName,'link': newFav,});
            console.log("hi2");
            
            
             }
         }else{
+            console.log(data.favorite.length);
+            for(let i=0; i<data.favorite.length;i++){
+                let name=data.favorite[i].name;
+                let link=data.favorite[i].link;
+                
+               
+
+                if(name === newName){
+
+                    
+                    continue;
+                }else{
+                    fav.push({'name': name,'link':link,});
+                   continue;
+                }
+
+               
+            }
+            fav.push({'name': newName,'link': newFav,})
             
-           
-            fav.push({'name': newName,'link': newFav,});
-   
-            console.log("hi3")
+         
 
         }
-        console.log(data.favorite);
+        console.log(data.favorite.length);
         let newData= {
             favorite: fav,
             mealPlan:{

@@ -87,30 +87,36 @@ export default class Ingredientresults extends Component {
 
     // }
     favB(){
-      this.setState({fb:!this.state.fb})
-      if(this.state.fb === true){
-      let favN=this.props.breakfast.b1.title;
-      let favL=this.props.breakfast.b1.source;
-      this.props.updateMeals(favN,favL);
-      }
+      this.setState({fb:!this.state.fb}, ()=>{
+
+        if(this.state.fb === true){
+        let favN=this.props.breakfast.b1.title;
+        let favL=this.props.breakfast.b1.source;
+        this.props.updateMeals(favN,favL);
+        }
+      });
       
 
     }
     favL(){
-      this.setState({fl:!this.state.fl})
-      if(this.state.fl===true){
-      let favN=this.props.lunch.l1.title;
-      let favL=this.props.lunch.l1.source;
-      this.props.updateMeals(favN,favL);
-    }
+      this.setState({fl:!this.state.fl}, ()=>{
+        
+        if(this.state.fl===true){
+        let favN=this.props.lunch.l1.title;
+        let favL=this.props.lunch.l1.source;
+        this.props.updateMeals(favN,favL);
+      }
+      })
     }
     favD(){
-      this.setState({fd:!this.state.fd})
-      if(this.state.fd===true){
-      let favN=this.props.dinner.d1.title;
-      let favL=this.props.dinner.d1.source;
-      this.props.updateMeals(favN,favL);
-      }
+      this.setState({fd:!this.state.fd}, ()=>{
+        
+        if(this.state.fd===true){
+        let favN=this.props.dinner.d1.title;
+        let favL=this.props.dinner.d1.source;
+        this.props.updateMeals(favN,favL);
+        }
+      })
     }
 
     userExist(){
@@ -214,14 +220,7 @@ export default class Ingredientresults extends Component {
       var resultb;
       var resultl;
       var resultd;
-      var heart1;
-      var heart2;
-      var heart3;
-      // if(this.state.fb=== "true"){
-      //   heart1= <button class="heart-checkbox" type="button" onClick={this.favB} />
-      // }else{
-      //   heart1= <button class="heart-checkbox1" type="button" onClick={this.favB} />
-      // }
+      
       if(this.props.result === "many"){
       
             if(this.props.breakfast === null) {
