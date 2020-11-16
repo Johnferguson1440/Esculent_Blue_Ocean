@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./Components/app.css";
+
 import Login from "./Components/Login";
 import IngredientSelection from "./Components/IngredientSelection";
 import "./App.css"
@@ -18,9 +18,12 @@ export default class App extends Component {
       //can be either selection/results/dayplan for render
       
       username: '',
-      password: ''
+      password: '',
+      login: true,
+     
       
     };
+    this.loginChange=this.loginChange.bind(this);
     // this.api = `http://localhost:8000/api/example`;
   }
 
@@ -37,16 +40,15 @@ export default class App extends Component {
     this.setState({username: ""});
     this.setState({password: ""});
   }
+  loginChange(){
+    this.setState({login: !this.state.login})
+  }
+com
+  
 
   componentDidMount() {
-    // fetch(this.api)
-    //   .then(res => res.json())
-    //   .then(seaCreatures => {
-       
-    //   });
+
   }
-
-
   render() {
    
 
@@ -55,8 +57,8 @@ export default class App extends Component {
       <div id={"main"}>
         
 
-        <Login user={this.state.username} userChange={this.changeUser.bind(this)} pass={this.state.password}  userPass={this.changePass.bind(this)} />
-        <IngredientSelection user={this.state.username} pass={this.state.password} blank={this.blankUser.bind(this)} /> 
+        <Login login={this.state.login} user={this.state.username} userChange={this.changeUser.bind(this)} pass={this.state.password}  userPass={this.changePass.bind(this)} loginChange={this.loginChange.bind(this)} />
+        <IngredientSelection  user={this.state.username} pass={this.state.password} blank={this.blankUser.bind(this)} loginChange={this.loginChange.bind(this)} login={this.state.login} /> 
         
 
       </div>
