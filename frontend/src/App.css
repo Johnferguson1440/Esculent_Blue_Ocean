@@ -189,11 +189,16 @@ h3{
     margin-right: 10px;
     margin-left: 5px;
 }
+
+#results {
+margin-top: 75px;
+}
+
 #options{
    
     color: #000;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
 
 }
 .content{
