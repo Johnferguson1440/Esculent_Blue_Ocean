@@ -7,15 +7,30 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom'
+ },
+  resolve: {
+   
+    extensions: [".ts", ".tsx", ".js", ".jsx"]
+},
   module: {
     rules: [
       {
-        test: /\.js$|jsx/,
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.js$|jsx/, 
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              "@babel/plugin-proposal-class-properties"
+            ]
           }
         }
       }
