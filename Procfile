@@ -1,1 +1,1 @@
-web: cd.. node mongo_server.js
+web:  node mongo_server.js
