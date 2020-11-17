@@ -17,10 +17,7 @@ module.exports = {
 },
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
+      
       {
         test: /\.js$|jsx/, 
         exclude: /(node_modules|bower_components)/,
@@ -33,7 +30,11 @@ module.exports = {
             ]
           }
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ]
   },
   devServer: {
