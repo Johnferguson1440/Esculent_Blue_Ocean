@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const Users = require("./db/mongo");
 const path = require("path");
-const PORT = 3001;
+const PORT = 5432;
 mongoose.connect('mongodb+srv://Benjamin:12345@cluster0.px8cq.mongodb.net/Esculent?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 
