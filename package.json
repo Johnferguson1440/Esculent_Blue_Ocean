@@ -2,7 +2,7 @@
   "name": "mcsp-full-stack-boilerplate",
   "version": "1.0.0",
   "description": "**GOAL**  - Your goal is to eventually comfortable building ANY ExpressJS fullstack application.  - Get practice with seeing it can all come together  - The steps below are guidelines, do what makes sense for you, what you need to focus on  - After doing this a few times, challenge yourself to create your own application without any directions.  - If you feel comfortable with everything, think about adding additional features / CSS",
-  "main": "mongo_server.js",
+  "main": "queries.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit ",
     "start:react": "cd frontend && npm start",
@@ -15,8 +15,8 @@
     "node": "14.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",

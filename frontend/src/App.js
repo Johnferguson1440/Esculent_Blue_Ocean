@@ -46,9 +46,7 @@ export default class App extends Component {
 com
   
 
-  componentDidMount() {
 
-  }
   render() {
    
 
