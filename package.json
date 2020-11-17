@@ -20,14 +20,13 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
-    "react": "^16.14.0"
+    "react": "^16.8.6"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0",
-    "babel-loader": "^8.2.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
@@ -37,16 +36,13 @@
     "express-generator": "^4.16.1",
     "html-react-parser": "^0.14.1",
     "http": "0.0.1-security",
-    "http-proxy-middleware": "^1.0.6",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.10.15",
+    "http-proxy-middleware": "^1.0.5",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.11",
     "morgan": "^1.10.0",
-    "node": "^15.2.1",
-    "nodemon": "^2.0.6",
-    "pg": "^8.5.1",
+    "pg": "^8.3.3",
     "react-bootstrap": "^1.4.0",
-    "react-datepicker": "^3.3.0",
-    "security": "^1.0.0"
+    "react-datepicker": "^3.3.0"
   },
   "repository": {
     "type": "git",
