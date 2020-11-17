@@ -2,7 +2,7 @@
   "name": "mcsp-full-stack-boilerplate",
   "version": "1.0.0",
   "description": "**GOAL**  - Your goal is to eventually comfortable building ANY ExpressJS fullstack application.  - Get practice with seeing it can all come together  - The steps below are guidelines, do what makes sense for you, what you need to focus on  - After doing this a few times, challenge yourself to create your own application without any directions.  - If you feel comfortable with everything, think about adding additional features / CSS",
-  "main": "queries.js",
+  "main": "mongo_server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit ",
     "start:react": "cd frontend && npm start",
@@ -43,5 +43,13 @@
     "pg": "^8.3.3",
     "react-bootstrap": "^1.4.0",
     "react-datepicker": "^3.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blue-Esculent/Esculent_Blue_Ocean.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Blue-Esculent/Esculent_Blue_Ocean/issues"
+  },
+  "homepage": "https://github.com/Blue-Esculent/Esculent_Blue_Ocean#readme"
 }
