@@ -11,9 +11,9 @@ const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 //used when utilizing the build file
-//app.use(express.static(path.join(__dirname, "./frontend/dist")));
+app.use(express.static(path.join(__dirname, "./frontend/dist")));
 //used when using public folder html file
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 
 //get finds one match based off of name entered login
